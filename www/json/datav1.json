@@ -1,0 +1,40 @@
+{
+  "objects":[
+    {
+      "name":"Brosse à dents",
+      "image":"",
+      "ref_rooms":[
+        "bathroom"
+      ]
+    }
+  ],
+  "actions":[],
+  "rooms":[
+    {
+      "name": "Salle de bain",
+      "image": "",
+      "ref_objects": [
+        "toothbrush"
+      ],
+      "ref_actions": []
+    },
+    {
+      "name": "Cuisine",
+      "image": "",
+      "ref_objects": [],
+      "ref_actions": []
+    },
+    {
+      "name": "Salon",
+      "image": "",
+      "ref_objects": [],
+      "ref_actions": []
+    },
+    {
+      "name": "Chambre",
+      "image": "",
+      "ref_objects": [],
+      "ref_actions": []
+    }
+  ]
+}

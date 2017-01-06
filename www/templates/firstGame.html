@@ -1,0 +1,54 @@
+<ion-view title="Consigne : résumé de la consigne ici ?">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>Back</ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+
+    <!-- TODO : Là aussi codé en dur ! Devra etre généré par un ng-repeat -->
+    <div class="row">
+      <div class="col col-33">
+        <a class="button button-block button-assertive" ng-click="checkAnswerFirstGame(rooms[0].image)">
+          Image pièce
+        </a>
+      </div>
+
+      <div class="col col-33">
+      </div>
+
+      <div class="col col-33">
+        <a class="button button-block button-assertive" ng-click="checkAnswerFirstGame(rooms[1].image)">
+          Image pièce
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-33">
+      </div>
+      <div class="col col-33">
+        <a class="button button-block button-assertive">
+          Image objet
+        </a>
+      </div>
+      <div class="col col-33">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-33">
+        <a class="button button-block button-assertive" ng-click="checkAnswerFirstGame(rooms[2].image)">
+          Image pièce
+        </a>
+      </div>
+
+      <div class="col col-33">
+      </div>
+
+      <div class="col col-33">
+        <a class="button button-block button-assertive" ng-click="checkAnswerFirstGame(rooms[3].image)">
+          Image pièce
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
