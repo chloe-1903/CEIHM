@@ -32,6 +32,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('second', {
     url: '/second',
     templateUrl: 'templates/second.html'
+  })
+  .state('paramsfirst', {
+    url: '/params/game/1',
+    templateUrl: 'templates/paramsFirstGame.html'
+  })
+  .state('menugames',{
+    url: '/menu/games',
+    templateUrl:'templates/menuPlayGame.html'
   });
+
   $urlRouterProvider.otherwise('/');
 });
