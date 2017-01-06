@@ -20,7 +20,8 @@ app.controller('MainCtrl', function($scope, $http) {
       $scope.badrooms = data.rooms.slice(1,4);
       $scope.rooms = $scope.badrooms.concat($scope.solution);
 
-      $scope.remaining_questions = $scope.paramsFirstGame.nb_questions;
+      if($scope.remaining_questions == 0 || $scope.remaining_questions == undefined)
+        $scope.remaining_questions = $scope.paramsFirstGame.nb_questions;
 
     });
   };
@@ -28,14 +29,16 @@ app.controller('MainCtrl', function($scope, $http) {
   $scope.checkAnswerFirstGame = function (answer) {
     if(answer == $scope.solution.image){
       // TODO : Message de succès
+      alert("Youpi un alert tout moche pour dire que c'est gagné !");
       $scope.remaining_questions--;
       if($scope.remaining_questions == 0){
-        // TODO : Message de fin
+        alert("Fin du jeu !");
+        location.href = '#/';
       } else {
         $scope.initFirstGame();
       }
     } else {
-      // TODO : Message d'échec
+      alert("T'es mauvais !");
     }
   };
 
