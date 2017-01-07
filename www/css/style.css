@@ -4,3 +4,16 @@
     margin-right: auto;
     display: block;
 }
+
+.tile-image {
+  text-shadow: 1px 1px 0 #000;
+  background-size: cover;
+  background-position: bottom;
+  height: 12em;
+}
+
+.tile-text {
+  margin-bottom: 0px;
+  margin-top: auto;
+  text-align: center;
+}

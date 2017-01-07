@@ -16,7 +16,11 @@ app.controller('MainCtrl', function($scope, $http) {
 
       // TODO : Changer pour que ce soit pas en dur !!!!
       $scope.question = data.objects[0];
-      $scope.solution = $scope.question.ref_rooms[0];
+      $scope.solution = data.rooms.find(function (elmt) {
+        if(elmt.image != undefined && elmt.image == $scope.question.ref_rooms[0])
+          return elmt;
+      });
+
       $scope.badrooms = data.rooms.slice(1,4);
       $scope.rooms = $scope.badrooms.concat($scope.solution);
 
@@ -24,8 +28,10 @@ app.controller('MainCtrl', function($scope, $http) {
         $scope.remaining_questions = $scope.paramsFirstGame.nb_questions;
 
     });
+
   };
 
+  // Check if the answer is valid (for the first game)
   $scope.checkAnswerFirstGame = function (answer) {
     if(answer == $scope.solution.image){
       // TODO : Message de succès

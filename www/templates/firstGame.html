@@ -1,54 +1,63 @@
 <ion-view title="Consigne : résumé de la consigne ici ?">
   <ion-nav-bar class="bar-stable">
-    <ion-nav-back-button>Back</ion-nav-back-button>
+    <ion-nav-back-button>Retour</ion-nav-back-button>
   </ion-nav-bar>
   <ion-content>
 
     <!-- TODO : Là aussi codé en dur ! Devra etre généré par un ng-repeat -->
-    <div class="row">
+    <div class="row" style="height: 10em;">
       <div class="col col-33">
-        <a class="button button-block button-assertive" ng-click="checkAnswerFirstGame(rooms[0].image)">
-          Image pièce
-        </a>
+        <div class="button button-block button-assertive tile-image"
+             style="background-image: url('../img/{{rooms[0].image}}')" ng-click="checkAnswerFirstGame(rooms[0].image)">
+        </div>
       </div>
 
       <div class="col col-33">
       </div>
 
       <div class="col col-33">
-        <a class="button button-block button-assertive" ng-click="checkAnswerFirstGame(rooms[1].image)">
-          Image pièce
-        </a>
+        <div class="button button-block button-assertive tile-image"
+             style="background-image: url('../img/{{rooms[1].image}}')" ng-click="checkAnswerFirstGame(rooms[1].image)">
+        </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col col-33">
+    <div class="row" style="height: 10em;">
+      <div class="col col-33 tile-text">
+        {{rooms[0].name}}
       </div>
       <div class="col col-33">
-        <a class="button button-block button-assertive">
-          Image objet
-        </a>
+        <div class="button button-block button-assertive tile-image"
+             style="background-image: url('../img/{{question.image}}')">
+        </div>
       </div>
-      <div class="col col-33">
+      <div class="col col-33 tile-text">
+        {{rooms[1].name}}
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="height: 10em;">
       <div class="col col-33">
-        <a class="button button-block button-assertive" ng-click="checkAnswerFirstGame(rooms[2].image)">
-          Image pièce
-        </a>
+        <div class="button button-block button-assertive tile-image"
+             style="background-image: url('../img/{{rooms[2].image}}')" ng-click="checkAnswerFirstGame(rooms[2].image)">
+        </div>
+      </div>
+
+      <div class="col col-33 tile-text">
+        {{question.name}}
       </div>
 
       <div class="col col-33">
+        <div class="button button-block button-assertive tile-image"
+             style="background-image: url('../img/{{rooms[3].image}}')" ng-click="checkAnswerFirstGame(rooms[3].image)">
+        </div>
       </div>
+    </div>
 
-      <div class="col col-33">
-        <a class="button button-block button-assertive" ng-click="checkAnswerFirstGame(rooms[3].image)">
-          Image pièce
-        </a>
-      </div>
+    <div class="row" style="height: 10em">
+      <div class="col col-33 tile-text">{{rooms[2].name}}</div>
+      <div class="col col-33"></div>
+      <div class="col col-33 tile-text">{{rooms[3].name}}</div>
     </div>
   </ion-content>
 </ion-view>
