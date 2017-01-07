@@ -14,7 +14,7 @@
       "name": "Salle de bain",
       "image": "bathroom.jpg",
       "ref_objects": [
-        "toothbrush"
+        "toothbrush.jpg"
       ],
       "ref_actions": []
     },
