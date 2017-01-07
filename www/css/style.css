@@ -17,3 +17,8 @@
   margin-top: auto;
   text-align: center;
 }
+
+.popup {
+  width: 450px !important;
+  height: 300px;
+}
