@@ -2,7 +2,7 @@ var app = angular.module('application');
 
 app.controller('MainCtrl', function($scope, $http) {
 
-  $scope.paramsFirstGame = {"nb_questions":3};
+  $scope.paramsFirstGame = {"nb_questions":3, "nb_rooms":4};
   $scope.paramsSecondGame = {};
 
   // Should exit the app but not sure it actually works...
@@ -15,21 +15,48 @@ app.controller('MainCtrl', function($scope, $http) {
     $http.get('../json/datav1.json').success(function(data) {
 
       // TODO : Changer pour que ce soit pas en dur !!!!
-      $scope.question = data.objects[0];
-      $scope.solution = data.rooms.find(function (elmt) {
-        if(elmt.image != undefined && elmt.image == $scope.question.ref_rooms[0])
-          return elmt;
-      });
 
-      $scope.badrooms = data.rooms.slice(1,4);
-      $scope.rooms = $scope.badrooms.concat($scope.solution);
+      $scope.questionList = [];
+      var objectsArray = data.objects.slice();
+      while($scope.questionList.length < $scope.paramsFirstGame.nb_questions){
+        var nb = Math.ceil(Math.random()*objectsArray.length);
+        $scope.questionList.push(objectsArray[nb]);
+        objectsArray.splice(nb,1);
+      }
 
-      if($scope.remaining_questions == 0 || $scope.remaining_questions == undefined)
-        $scope.remaining_questions = $scope.paramsFirstGame.nb_questions;
+      $scope.remaining_questions = $scope.paramsFirstGame.nb_questions;
 
+      nextStepFirstGame();
     });
 
   };
+
+  function nextStepFirstGame(){
+    $http.get('../json/datav1.json').success(function(data) {
+      $scope.question = $scope.questionList[$scope.remaining_questions];
+      var nb = Math.ceil(Math.random()*$scope.question.ref_rooms.length);
+      $scope.solution = data.rooms.find(function (elmt) {
+        if(elmt.image != undefined && elmt.image == $scope.question.ref_rooms[nb])
+          return elmt;
+      });
+
+      var roomsArray = data.rooms.slice();
+      var filteredRoomsArray = roomsArray.filter(function (elmt) {
+        return $scope.solution.ref_rooms.indefOf(elmt) === -1;
+      });
+
+      $scope.badrooms = [];
+      while($scope.badrooms.length < $scope.paramsFirstGame.nb_rooms - 1){
+        nb = Math.ceil(Math.random()*filteredRoomsArray.length);
+        $scope.badrooms.push(filteredRoomsArray[nb]);
+        filteredRoomsArray.splice(nb,1);
+      }
+
+      nb = Math.ceil(Math.random()*$scope.paramsFirstGame.nb_rooms);
+      $scope.rooms = $scope.badrooms.concat($scope.solution);
+
+    });
+  }
 
   // Check if the answer is valid (for the first game)
   $scope.checkAnswerFirstGame = function (answer) {

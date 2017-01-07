@@ -6,6 +6,21 @@
       "ref_rooms":[
         "bathroom.jpg"
       ]
+    },
+    {
+      "name":"Couteau",
+      "image":"knife.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Papier toilettes",
+      "image":"pq.jpg",
+      "ref_rooms":[
+        "toilets.jpg",
+        "bathroom.jpg"
+      ]
     }
   ],
   "actions":[],
@@ -14,14 +29,17 @@
       "name": "Salle de bain",
       "image": "bathroom.jpg",
       "ref_objects": [
-        "toothbrush.jpg"
+        "toothbrush.jpg",
+        "pq.jpg"
       ],
       "ref_actions": []
     },
     {
       "name": "Cuisine",
       "image": "kitchen.jpg",
-      "ref_objects": [],
+      "ref_objects": [
+        "knife.jpg"
+      ],
       "ref_actions": []
     },
     {
@@ -34,6 +52,20 @@
       "name": "Chambre",
       "image": "bedroom.jpg",
       "ref_objects": [],
+      "ref_actions": []
+    },
+    {
+      "name":"Bureau",
+      "image":"desktop.jpg",
+      "ref_objects": [],
+      "ref_actions": []
+    },
+    {
+      "name":"Toilettes",
+      "image":"toilets.jpg",
+      "ref_objects": [
+        "pq.jpg"
+      ],
       "ref_actions": []
     }
   ]
