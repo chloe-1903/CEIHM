@@ -1,0 +1,4 @@
+{
+	"helpParamsFirstGame":"Vous avez le choix entre des objets et/ou  des actions. Vous pouvez également choisir le nombre d’objets ou d’actions. Le total du nombre d’actions et d’objets doit toujours être supérieur ou égale à 1 et inférieur ou égale à 4. <br/> Le nombre de tentatives correspond au nombre maximal de mauvaises réponses avant d'avoir perdu.", 
+	"helpParamsSecondGame":"Vous avez le choix entre un objet ou une action à associer à des pièces. Vous pouvez également choisir le nombre de pièces (2 minimums et 4 maximums).<br/> Le nombre de tentatives correspond au nombre maximal de mauvaises réponses avant d'avoir perdu."
+}
