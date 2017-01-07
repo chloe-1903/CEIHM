@@ -19,7 +19,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       $scope.questionList = [];
       var objectsArray = data.objects.slice();
       while($scope.questionList.length < $scope.paramsFirstGame.nb_questions){
-        var nb = Math.ceil(Math.random()*objectsArray.length);
+        var nb = Math.floor(Math.random()*objectsArray.length);
         $scope.questionList.push(objectsArray[nb]);
         objectsArray.splice(nb,1);
       }
@@ -33,8 +33,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   function nextStepFirstGame(){
     $http.get('../json/datav1.json').success(function(data) {
-      $scope.question = $scope.questionList[$scope.remaining_questions];
-      var nb = Math.ceil(Math.random()*$scope.question.ref_rooms.length);
+      $scope.question = $scope.questionList[$scope.remaining_questions - 1];
+      var nb = Math.floor(Math.random()*$scope.question.ref_rooms.length);
       $scope.solution = data.rooms.find(function (elmt) {
         if(elmt.image != undefined && elmt.image == $scope.question.ref_rooms[nb])
           return elmt;
@@ -42,19 +42,19 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
       var roomsArray = data.rooms.slice();
       var filteredRoomsArray = roomsArray.filter(function (elmt) {
-        return $scope.solution.ref_rooms.indefOf(elmt) === -1;
+        return $scope.question.ref_rooms.indexOf(elmt.image) === -1;
       });
 
       $scope.badrooms = [];
       while($scope.badrooms.length < $scope.paramsFirstGame.nb_rooms - 1){
-        nb = Math.ceil(Math.random()*filteredRoomsArray.length);
+        nb = Math.floor(Math.random()*filteredRoomsArray.length);
         $scope.badrooms.push(filteredRoomsArray[nb]);
         filteredRoomsArray.splice(nb,1);
       }
 
-      nb = Math.ceil(Math.random()*$scope.paramsFirstGame.nb_rooms);
-      $scope.rooms = $scope.badrooms.concat($scope.solution);
-
+      nb = Math.floor(Math.random()*$scope.paramsFirstGame.nb_rooms);
+      $scope.badrooms.splice(nb, 0, $scope.solution)
+      $scope.rooms = $scope.badrooms.slice();
     });
   }
 
@@ -68,7 +68,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         alert("Fin du jeu !");
         location.href = '#/';
       } else {
-        $scope.initFirstGame();
+        nextStepFirstGame();
       }
     } else {
       alert("T'es mauvais !");
