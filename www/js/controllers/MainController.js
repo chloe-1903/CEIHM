@@ -1,6 +1,6 @@
 var app = angular.module('application');
 
-app.controller('MainCtrl', function($scope, $http) {
+app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   $scope.paramsFirstGame = {"nb_questions":3};
   $scope.paramsSecondGame = {};
@@ -40,6 +40,17 @@ app.controller('MainCtrl', function($scope, $http) {
     } else {
       alert("T'es mauvais !");
     }
+  };
+
+  $scope.showHelp = function(type) {
+    $http.get('../json/helps.json').success(function(data) {
+      console.log(type);
+      var alertPopup = $ionicPopup.alert({
+         title: 'Les paramètres',
+         template: data[type]
+       });
+
+    });
   };
 
 });

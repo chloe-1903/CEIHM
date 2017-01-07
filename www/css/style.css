@@ -4,3 +4,8 @@
     margin-right: auto;
     display: block;
 }
+
+.popup {
+  width: 450px !important;
+  height: 300px;
+}
