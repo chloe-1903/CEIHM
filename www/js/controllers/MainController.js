@@ -19,6 +19,9 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         var nb = Math.floor(Math.random()*objectsArray.length);
         $scope.questionList.push(objectsArray[nb]);
         objectsArray.splice(nb,1);
+        if(objectsArray.length === 0){
+          objectsArray = data.objects.slice();
+        }
       }
 
       $scope.remaining_questions = $scope.paramsSecondGame.nb_questions;
@@ -62,7 +65,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       successGamePopup();
       $scope.remaining_questions--;
       if($scope.remaining_questions == 0){
-        alert("Fin du jeu !");
+        endGamePopup();
         location.href = '#/games/menu';
       } else {
         nextStepSecondGame();
