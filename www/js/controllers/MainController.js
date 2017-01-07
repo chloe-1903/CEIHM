@@ -66,7 +66,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       $scope.remaining_questions--;
       if($scope.remaining_questions == 0){
         alert("Fin du jeu !");
-        location.href = '#/';
+        location.href = '#/games/menu';
       } else {
         nextStepFirstGame();
       }
