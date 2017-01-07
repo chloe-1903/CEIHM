@@ -29,11 +29,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/',
     templateUrl: 'templates/home.html'
   })
-  .state('second', {
-    url: '/second',
-    templateUrl: 'templates/second.html'
-  })
-  .state('paramsfirst', {
+  .state('paramsFirst', {
     url: '/params/game/1',
     templateUrl: 'templates/paramsFirstGame.html'
   })
@@ -49,9 +45,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/games/menu',
     templateUrl:'templates/menuPlayGame.html'
   })
-  .state('firstgame',{
+  .state('secondgame',{
     url:'/games/1',
-    templateUrl:'templates/firstGame.html'
+    templateUrl:'templates/secondGame.html'
   });
 
   $urlRouterProvider.otherwise('/');
