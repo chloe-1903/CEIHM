@@ -13,9 +13,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   // Initialize the rooms and the object/action for the first game
   $scope.initFirstGame = function () {
     $http.get('../json/datav1.json').success(function(data) {
-
-      // TODO : Changer pour que ce soit pas en dur !!!!
-
       $scope.questionList = [];
       var objectsArray = data.objects.slice();
       while($scope.questionList.length < $scope.paramsFirstGame.nb_questions){
@@ -61,8 +58,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   // Check if the answer is valid (for the first game)
   $scope.checkAnswerFirstGame = function (answer) {
     if(answer == $scope.solution.image){
-      // TODO : Message de succès
-      alert("Youpi un alert tout moche pour dire que c'est gagné !");
+      // TODO : Faire en sorte que les messages d'alerte soient bloquants
+      successGamePopup();
       $scope.remaining_questions--;
       if($scope.remaining_questions == 0){
         alert("Fin du jeu !");
@@ -71,9 +68,30 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         nextStepFirstGame();
       }
     } else {
-      alert("T'es mauvais !");
+      failGamePopup();
     }
   };
+
+  function failGamePopup(){
+    var alertFailPopup = $ionicPopup.alert({
+      title: 'Raté patate !',
+      template: 'Waaaaa la looooooze'
+    });
+  }
+
+  function successGamePopup() {
+    var alertSuccessPopup = $ionicPopup.alert({
+      title: 'Well done',
+      template: 'Prends pas la grosse tête hein'
+    });
+  }
+
+  function endGamePopup() {
+    var alertEndPopup = $ionicPopup.alert({
+      title: "Fin du jeu",
+      template: "Merci d'avoir joué !"
+    });
+  }
 
   $scope.showHelp = function(type) {
     $http.get('../json/helps.json').success(function(data) {
