@@ -1,0 +1,72 @@
+<ion-view>
+	<ion-header-bar class="bar-header">
+		<h1 class="title">Paramètres - Trouver la bonne pièce</h1>
+	</ion-header-bar>
+	<ion-content has-header="true" padding="true">
+		
+		<br/>
+
+		<div class="col .col-25 col-offset-75">
+			<button class="button button-clear button-dark icon ion-ios-help-outline" ng-click="showHelp('helpParamsSecondGame')">
+				Aide
+			</button>
+		</div>
+
+		<div class="row">
+			<label class="checkbox-inline col .col-25 col-offset-25"><input type="checkbox" value=""> Jouer avec un objet</label>
+			<label class="checkbox-inline col .col-25"><input type="checkbox" value=""> Jouer avec une action</label>
+			<div class="col .col-25"> </div>
+		</div>
+
+		<br/>
+
+		<div class="row">
+			<div class="col .col-33 col-offset-33">
+				<div class="row"> Nombre de pièces</div>
+				<div class="item range row">
+				  2
+				  <input step="1" min="2" max="4" type="range" ng-model="paramsFirstGame.nb_rooms">
+				  4
+				</div>
+			</div>
+			<div class="col .col-33"> </div>
+		</div>
+
+		<br/>
+
+		<div class="row">
+			<label class="checkbox-inline col  col-offset-33"><input type="checkbox" value=""> Activer la description textuelle des images</label>
+		</div>
+		<div class="row">
+			<label class="checkbox-inline col  col-offset-33"><input type="checkbox" value=""> Activer la description vocale des images</label>
+		</div>
+
+		<br/>
+
+		<div class="row">
+			<div class="col .col-25 col-offset-25">
+				<div class="row"> Nombre de questions ({{paramsFirstGame.nb_questions}})</div>
+				<div class="item range row">
+				  1
+				  <input step="1" min="1" max="20" type="range" ng-model="paramsFirstGame.nb_questions">
+				  20
+				</div>
+			</div>
+			<div class="col .col-25">
+				<div class="row"> Nombre de tentatives possibles</div>
+				<div class="item range row">
+				  1
+				  <input step="1" min="1" max="5" type="range">
+				  5
+				</div>
+			</div>
+			<div class="col .col-25"> </div>
+		</div>
+
+		<br/>
+
+		<div class="col .col-25 col-offset-75">  <a class="button" href="#/params/menu">Retour</a> </div>
+
+    
+  </ion-content>
+</ion-view>
