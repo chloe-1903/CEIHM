@@ -25,15 +25,15 @@
 				<div class="row"> Nombre d'objets</div>
 				<div class="item range row">
 				  1
-				  <input step="1" min="1" max="4" type="range" name="volume">
+				  <input step="1" min="1" max="4" type="range" >
 				  4
 				</div>
 			</div>
 			<div class="col .col-25">
-				<div class="row"> Nombre d'objets</div>
+				<div class="row"> Nombre d'actions</div>
 				<div class="item range row">
 				  1
-				  <input step="1" min="1" max="4" type="range" name="volume">
+				  <input step="1" min="1" max="4" type="range" >
 				  4
 				</div>
 			</div>
@@ -53,10 +53,10 @@
 
 		<div class="row">
 			<div class="col .col-25 col-offset-25">
-				<div class="row"> Nombre de questions </div>
+				<div class="row"> Nombre de questions ({{paramsFirstGame.nb_questions}}) </div>
 				<div class="item range row">
 				  1
-				  <input step="5" min="0" max="20" type="range" name="volume">
+				  <input step="1" min="1" max="20" type="range" ng-model="paramsFirstGame.nb_questions">
 				  20
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 				<div class="row"> Nombre de tentatives possibles</div>
 				<div class="item range row">
 				  1
-				  <input step="1" min="1" max="5" type="range" name="volume">
+				  <input step="1" min="1" max="5" type="range">
 				  5
 				</div>
 			</div>

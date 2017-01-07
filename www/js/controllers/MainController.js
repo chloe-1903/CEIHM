@@ -77,7 +77,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   $scope.showHelp = function(type) {
     $http.get('../json/helps.json').success(function(data) {
-      console.log(type);
       var alertPopup = $ionicPopup.alert({
          title: 'Les paramètres',
          template: data[type]
