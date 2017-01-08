@@ -143,10 +143,22 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   $scope.showGameHelp = function(type) {
     $http.get('../json/helps.json').success(function(data) {
-      var alertPopup = $ionicPopup.alert({
+      var alertPopup = $ionicPopup.show({
         title: 'Les règles du jeu',
         template: data[type],
         okText: 'Continuer',
+        cssClass: 'gameHelp',
+        buttons: [
+          { text: '',
+            type: 'button-clear',
+            onTap: function(e) {
+              // e.preventDefault() will stop the popup from closing when tapped.
+              e.preventDefault();
+            }
+          },
+          { text : 'Continuer',
+            type: 'button-positive'}
+            ]
       });
 
     });
