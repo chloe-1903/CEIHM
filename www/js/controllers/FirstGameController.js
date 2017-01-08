@@ -81,4 +81,14 @@ app.controller('FirstGameCtrl', function($scope, $http, $ionicPopup) {
     });
   };
 
+  $scope.showGameHelp = function(type) {
+    $http.get('../json/helps.json').success(function(data) {
+      var alertPopup = $ionicPopup.alert({
+        title: 'Les règles du jeu',
+        template: data[type]
+      });
+
+    });
+  };
+
 });

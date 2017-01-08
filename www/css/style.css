@@ -36,6 +36,24 @@
 .popup {
   width: 450px !important;
   height: 300px;
+  padding-bottom: 64px;
+}
+
+.popup-buttons {
+  position: absolute;
+  bottom: 0px;
+  width: 50%;
+  margin-left: 25%;
+}
+
+.failPopup .popup-body, .successPopup .popup-body, .endPopup .popup-body {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 60px;
+}
+
+.failPopup .popup-head h3, .successPopup .popup-head h3, .endPopup .popup-head h3 {
+  font-size: 22px !important;
 }
 
 .scroll {

@@ -80,15 +80,19 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   function failGamePopup(){
     var alertFailPopup = $ionicPopup.alert({
-      title: 'Raté patate !',
-      template: 'Waaaaa la looooooze'
+      title: 'Raté !',
+      template: 'Ça irait sûrement mieux dans un autre pièce, non ?',
+      okText: 'Continuer',
+      cssClass: 'failPopup'
     });
   }
 
   function successGamePopup() {
     var alertSuccessPopup = $ionicPopup.alert({
-      title: 'Well done',
-      template: 'Prends pas la grosse tête hein'
+      title: 'Bien joué !',
+      template: 'Vous avez trouvé la bonne pièce !',
+      okText: 'Continuer',
+      cssClass: 'successPopup'
     });
     alertSuccessPopup.then(function(res) {
       if($scope.remaining_questions == 0){
@@ -116,7 +120,9 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   function endGamePopup() {
     var alertEndPopup = $ionicPopup.alert({
       title: "Fin du jeu",
-      template: "Merci d'avoir joué !"
+      template: "Merci d'avoir joué !",
+      okText: 'Continuer',
+      cssClass: 'endPopup'
     });
     alertEndPopup.then(function(res) {
       location.href = '#/games/menu';
@@ -129,6 +135,17 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
          title: 'Les paramètres',
          template: data[type]
        });
+
+    });
+  };
+
+
+  $scope.showGameHelp = function(type) {
+    $http.get('../json/helps.json').success(function(data) {
+      var alertPopup = $ionicPopup.alert({
+        title: 'Les règles du jeu',
+        template: data[type]
+      });
 
     });
   };
