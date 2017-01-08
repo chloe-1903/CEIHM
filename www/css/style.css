@@ -13,6 +13,10 @@
   height: 12em;
 }
 
+.tile-tall {
+  height: 20em;
+}
+
 .tile-text {
   margin-bottom: 0px;
   margin-top: auto;
