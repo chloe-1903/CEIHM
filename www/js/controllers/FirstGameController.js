@@ -9,6 +9,7 @@ app.controller('FirstGameCtrl', function($scope, $http, $ionicPopup) {
   // Initialize the rooms and the object/action for the second game
   $scope.initFirstGame = function () {
     $http.get('../json/datav1.json').success(function(data) {
+      console.log("eezf");
       $scope.questionRoomList = [];
       var roomsArray = data.rooms.slice();
       while($scope.questionRoomList.length < $scope.paramsFirstGame.nb_questions){
@@ -31,15 +32,37 @@ app.controller('FirstGameCtrl', function($scope, $http, $ionicPopup) {
     $http.get('../json/datav1.json').success(function(data) {
       $scope.questionRoom = $scope.questionRoomList[$scope.remaining_questions - 1];
 
-      var nbGoodAnswers = Math.floor(Math.random() * $scope.paramsFirstGame.nb_objects) + 1;
+      var randMax = $scope.questionRoom.ref_objects.length < $scope.paramsFirstGame.nb_objects ?
+        $scope.questionRoom.ref_objects.length : $scope.paramsFirstGame.nb_objects;
+      var nbGoodAnswers = Math.floor(Math.random() * randMax) + 1;
       var nbBadAnswers = $scope.paramsFirstGame.nb_objects - nbGoodAnswers;
 
-      var objectsArray = $scope.questionRoom.ref_objects.slice();
-      $scope.solutions = [];
+      var refObjectsArray = $scope.questionRoom.ref_objects.slice();
+      $scope.fgGoodAnswers = [];
       for(var i = 0 ; i < nbGoodAnswers ; i++){
-        var nb = Math.floor(Math.random()*objectsArray.length);
-        $scope.solutions.push(objectsArray[nb]);
-        objectsArray.splice(nb,1);
+        var nb = Math.floor(Math.random()*refObjectsArray.length);
+        $scope.fgGoodAnswers.push(refObjectsArray[nb]);
+        refObjectsArray.splice(nb,1);
+      }
+
+      var objectsArray = data.objects.slice();
+      var allBadObjectsArray = objectsArray.filter(function (elmt) {
+        return $scope.questionRoom.ref_objects.indexOf(elmt.image) === -1;
+      });
+
+      $scope.fgBadAnswers = [];
+      while($scope.fgBadAnswers.length < nbBadAnswers){
+        nb = Math.floor(Math.random()*allBadObjectsArray.length);
+        $scope.fgBadAnswers.push(allBadObjectsArray[nb]);
+        allBadObjectsArray.splice(nb,1);
+      }
+
+      var answersToMix = $scope.fgBadAnswers.concat($scope.fgGoodAnswers);
+      $scope.fgAnswers = [];
+      while($scope.fgAnswers.length < $scope.paramsFirstGame.nb_objects){
+        var nb = Math.floor(Math.random() * answersToMix.length);
+        $scope.fgAnswers.push(answersToMix[nb]);
+        answersToMix.splice(nb,1);
       }
 
     });

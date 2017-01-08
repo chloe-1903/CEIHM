@@ -41,19 +41,19 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       });
 
       var roomsArray = data.rooms.slice();
-      var filteredRoomsArray = roomsArray.filter(function (elmt) {
+      var allBadRoomsArray = roomsArray.filter(function (elmt) {
         return $scope.question.ref_rooms.indexOf(elmt.image) === -1;
       });
 
       $scope.badrooms = [];
       while($scope.badrooms.length < $scope.paramsSecondGame.nb_rooms - 1){
-        nb = Math.floor(Math.random()*filteredRoomsArray.length);
-        $scope.badrooms.push(filteredRoomsArray[nb]);
-        filteredRoomsArray.splice(nb,1);
+        nb = Math.floor(Math.random()*allBadRoomsArray.length);
+        $scope.badrooms.push(allBadRoomsArray[nb]);
+        allBadRoomsArray.splice(nb,1);
       }
 
       nb = Math.floor(Math.random()*$scope.paramsSecondGame.nb_rooms);
-      $scope.badrooms.splice(nb, 0, $scope.solution)
+      $scope.badrooms.splice(nb, 0, $scope.solution);
       $scope.rooms = $scope.badrooms.slice();
     });
   }
