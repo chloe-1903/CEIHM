@@ -59,7 +59,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   }
 
   // Check if the answer is valid (for the second game)
-  $scope.checkAnswerSecondGame = function (answer, elem, cadre) {
+  $scope.checkAnswerSecondGame = function (answer, elem, cadre, text) {
     if(answer == $scope.solution.image){
       // TODO : Faire en sorte que les messages d'alerte soient bloquants
       successGamePopup();
@@ -76,6 +76,12 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
           forbidden[y].classList.remove("forbidden");
           forbiddenCadre[y].classList.remove("forbidden-cadre");
         }
+        //Put text visibility back, it override some, but it's just a mock-up...
+        var texts = document.getElementsByClassName("tile-text");
+        for(var i = 0; i < texts.length; i++) {
+          texts[i].style.opacity = "1";
+        }
+
         nextStepSecondGame();
       }
     }
@@ -83,6 +89,12 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       //Put a forbidden circle on the image
       document.getElementById(elem).className += " forbidden";
       document.getElementById(cadre).className += " forbidden-cadre";
+      //Hide image if the user spam
+      if(document.getElementById(elem).classList.length == 3) {
+        //document.getElementById(elem).style.display = "none";
+        document.getElementById(cadre).style.display = "none";
+        document.getElementById(text).style.opacity = "0";
+      }
       failGamePopup();
     }
   };
