@@ -12,7 +12,7 @@
     <!-- TODO : Là aussi codé en dur ! Devra etre généré par un ng-repeat -->
     <div class="row" style="height: 10em;">
       <div class="col col-33">
-        <div id="cadre-1" class="button button-block tile-image"
+        <div id="cadre-1" class="button button-block tile-image" ng-if="paramsSecondGame.nb_rooms > 0"
              style="background-image: url('../img/{{rooms[0].image}}')" ng-click="checkAnswerSecondGame(rooms[0].image, 'image-1', 'cadre-1', 'text-1')">
             <div id="image-1"></div>
         </div>
@@ -22,7 +22,7 @@
       </div>
 
       <div class="col col-33">
-        <div id="cadre-2" class="button button-block tile-image"
+        <div id="cadre-2" class="button button-block tile-image" ng-if="paramsSecondGame.nb_rooms > 1"
              style="background-image: url('../img/{{rooms[1].image}}')" ng-click="checkAnswerSecondGame(rooms[1].image, 'image-2', 'cadre-2', 'text-2')">
           <div id="image-2"></div>
         </div>
@@ -30,7 +30,7 @@
     </div>
 
     <div class="row" style="height: 10em;">
-      <div class="col col-33 tile-text" id="text-1">
+      <div class="col col-33 tile-text" id="text-1" ng-if="paramsSecondGame.nb_rooms > 0">
         {{rooms[0].name}}
       </div>
       <div class="col col-33">
@@ -38,14 +38,14 @@
              style="background-image: url('../img/{{question.image}}')">
         </div>
       </div>
-      <div class="col col-33 tile-text" id="text-2">
+      <div class="col col-33 tile-text" id="text-2" ng-if="paramsSecondGame.nb_rooms > 1">
         {{rooms[1].name}}
       </div>
     </div>
 
     <div class="row" style="height: 10em;">
       <div class="col col-33">
-        <div id="cadre-3" class="button button-block tile-image"
+        <div id="cadre-3" class="button button-block tile-image" ng-if="paramsSecondGame.nb_rooms > 2"
              style="background-image: url('../img/{{rooms[2].image}}')" ng-click="checkAnswerSecondGame(rooms[2].image, 'image-3', 'cadre-3', 'text-3')">
           <div id="image-3"></div>
         </div>
@@ -56,7 +56,7 @@
       </div>
 
       <div class="col col-33">
-        <div id="cadre-4" class="button button-block tile-image"
+        <div id="cadre-4" class="button button-block tile-image"  ng-if="paramsSecondGame.nb_rooms > 3"
              style="background-image: url('../img/{{rooms[3].image}}')" ng-click="checkAnswerSecondGame(rooms[3].image, 'image-4', 'cadre-4', 'text-4')">
           <div id="image-4"></div>
         </div>
@@ -64,9 +64,13 @@
     </div>
 
     <div class="row" style="height: 10em">
-      <div class="col col-33 tile-text" id="text-3">{{rooms[2].name}}</div>
+      <div class="col col-33 tile-text" id="text-3" ng-if="paramsSecondGame.nb_rooms > 2">
+        {{rooms[2].name}}
+      </div>
       <div class="col col-33"></div>
-      <div class="col col-33 tile-text" id="text-4">{{rooms[3].name}}</div>
+      <div class="col col-33 tile-text" id="text-4" ng-if="paramsSecondGame.nb_rooms > 3">
+        {{rooms[3].name}}
+      </div>
     </div>
   </ion-content>
 </ion-view>
