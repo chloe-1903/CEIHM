@@ -4,6 +4,8 @@ app.controller('FirstGameCtrl', function($scope, $http, $ionicPopup) {
 
   $scope.paramsFirstGame = {"nb_questions":3, "nb_objects":4, "nb_actions":0};
 
+  // TODO : Prendre en compte les actions !
+
   // Initialize the rooms and the object/action for the second game
   $scope.initFirstGame = function () {
     $http.get('../json/datav1.json').success(function(data) {
@@ -29,6 +31,16 @@ app.controller('FirstGameCtrl', function($scope, $http, $ionicPopup) {
     $http.get('../json/datav1.json').success(function(data) {
       $scope.questionRoom = $scope.questionRoomList[$scope.remaining_questions - 1];
 
+      var nbGoodAnswers = Math.floor(Math.random() * $scope.paramsFirstGame.nb_objects) + 1;
+      var nbBadAnswers = $scope.paramsFirstGame.nb_objects - nbGoodAnswers;
+
+      var objectsArray = $scope.questionRoom.ref_objects.slice();
+      $scope.solutions = [];
+      for(var i = 0 ; i < nbGoodAnswers ; i++){
+        var nb = Math.floor(Math.random()*objectsArray.length);
+        $scope.solutions.push(objectsArray[nb]);
+        objectsArray.splice(nb,1);
+      }
 
     });
   }
