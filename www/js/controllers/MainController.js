@@ -61,29 +61,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   // Check if the answer is valid (for the second game)
   $scope.checkAnswerSecondGame = function (answer, elem, cadre, text) {
     if(answer == $scope.solution.image){
-      // TODO : Faire en sorte que les messages d'alerte soient bloquants
       successGamePopup();
       $scope.remaining_questions--;
-      if($scope.remaining_questions == 0){
-        endGamePopup();
-        location.href = '#/games/menu';
-      } else {
-        //Delete all forbidden circles
-        var forbidden = document.getElementsByClassName("forbidden");
-        var forbiddenCadre = document.getElementsByClassName("forbidden-cadre");
-        var length = forbidden.length;
-        for(var y = length-1; y >= 0; y--) {
-          forbidden[y].classList.remove("forbidden");
-          forbiddenCadre[y].classList.remove("forbidden-cadre");
-        }
-        //Put text visibility back, it override some, but it's just a mock-up...
-        var texts = document.getElementsByClassName("tile-text");
-        for(var i = 0; i < texts.length; i++) {
-          texts[i].style.opacity = "1";
-        }
-
-        nextStepSecondGame();
-      }
     }
     else {
       //Put a forbidden circle on the image
@@ -111,12 +90,36 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       title: 'Well done',
       template: 'Prends pas la grosse tête hein'
     });
+    alertSuccessPopup.then(function(res) {
+      if($scope.remaining_questions == 0){
+        endGamePopup();
+      } else {
+        //Delete all forbidden circles
+        var forbidden = document.getElementsByClassName("forbidden");
+        var forbiddenCadre = document.getElementsByClassName("forbidden-cadre");
+        var length = forbidden.length;
+        for(var y = length-1; y >= 0; y--) {
+          forbidden[y].classList.remove("forbidden");
+          forbiddenCadre[y].classList.remove("forbidden-cadre");
+        }
+        //Put text visibility back, it override some, but it's just a mock-up...
+        var texts = document.getElementsByClassName("tile-text");
+        for(var i = 0; i < texts.length; i++) {
+          texts[i].style.opacity = "1";
+        }
+
+        nextStepSecondGame();
+      }
+    });
   }
 
   function endGamePopup() {
     var alertEndPopup = $ionicPopup.alert({
       title: "Fin du jeu",
       template: "Merci d'avoir joué !"
+    });
+    alertEndPopup.then(function(res) {
+      location.href = '#/games/menu';
     });
   }
 
