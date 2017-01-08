@@ -46,14 +46,18 @@
   margin-left: 25%;
 }
 
+.popup .popup-body {
+  text-align: justify;
+}
+
 .failPopup .popup-body, .successPopup .popup-body, .endPopup .popup-body {
   text-align: center;
   font-size: 18px;
   margin-top: 40px;
 }
 
-.failPopup .popup-head h3, .successPopup .popup-head h3, .endPopup .popup-head h3 {
-  font-size: 22px !important;
+.popup .popup-head h3 {
+  font-size: 22px;
 }
 
 .successPopup .popup {
