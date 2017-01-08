@@ -145,7 +145,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       //Hide image if the user spam
       if(document.getElementById(elem).classList.length == 3) {
         //document.getElementById(elem).style.display = "none";
-        document.getElementById(cadre).style.display = "none";
+        document.getElementById(cadre).classList.add("cadre-none");
         document.getElementById(text).style.opacity = "0";
       }
       failGamePopup();
@@ -184,6 +184,11 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         var texts = document.getElementsByClassName("tile-text");
         for(var i = 0; i < texts.length; i++) {
           texts[i].style.opacity = "1";
+        }
+        //Put image visibility back
+        var cadres = document.getElementsByClassName("cadre-none");
+        for(var i = cadres.length-1; i >= 0; i--) {
+          cadres[i].classList.remove("cadre-none");
         }
 
         nextStepSecondGame();
