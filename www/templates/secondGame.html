@@ -7,8 +7,9 @@
     <!-- TODO : Là aussi codé en dur ! Devra etre généré par un ng-repeat -->
     <div class="row" style="height: 10em;">
       <div class="col col-33">
-        <div class="button button-block tile-image"
-             style="background-image: url('../img/{{rooms[0].image}}')" ng-click="checkAnswerSecondGame(rooms[0].image)">
+        <div id="cadre-1" class="button button-block tile-image"
+             style="background-image: url('../img/{{rooms[0].image}}')" ng-click="checkAnswerSecondGame(rooms[0].image, 'image-1', 'cadre-1')">
+            <div id="image-1"></div>
         </div>
       </div>
 
@@ -16,8 +17,9 @@
       </div>
 
       <div class="col col-33">
-        <div class="button button-block tile-image"
-             style="background-image: url('../img/{{rooms[1].image}}')" ng-click="checkAnswerSecondGame(rooms[1].image)">
+        <div id="cadre-2" class="button button-block tile-image"
+             style="background-image: url('../img/{{rooms[1].image}}')" ng-click="checkAnswerSecondGame(rooms[1].image, 'image-2', 'cadre-2')">
+          <div id="image-2"></div>
         </div>
       </div>
     </div>
@@ -38,8 +40,9 @@
 
     <div class="row" style="height: 10em;">
       <div class="col col-33">
-        <div class="button button-block tile-image"
-             style="background-image: url('../img/{{rooms[2].image}}')" ng-click="checkAnswerSecondGame(rooms[2].image)">
+        <div id="cadre-3" class="button button-block tile-image"
+             style="background-image: url('../img/{{rooms[2].image}}')" ng-click="checkAnswerSecondGame(rooms[2].image, 'image-3', 'cadre-3')">
+          <div id="image-3"></div>
         </div>
       </div>
 
@@ -48,8 +51,9 @@
       </div>
 
       <div class="col col-33">
-        <div class="button button-block tile-image"
-             style="background-image: url('../img/{{rooms[3].image}}')" ng-click="checkAnswerSecondGame(rooms[3].image)">
+        <div id="cadre-4" class="button button-block tile-image"
+             style="background-image: url('../img/{{rooms[3].image}}')" ng-click="checkAnswerSecondGame(rooms[3].image, 'image-4', 'cadre-4')">
+          <div id="image-4"></div>
         </div>
       </div>
     </div>

@@ -59,7 +59,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   }
 
   // Check if the answer is valid (for the second game)
-  $scope.checkAnswerSecondGame = function (answer) {
+  $scope.checkAnswerSecondGame = function (answer, elem, cadre) {
     if(answer == $scope.solution.image){
       // TODO : Faire en sorte que les messages d'alerte soient bloquants
       successGamePopup();
@@ -68,9 +68,21 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         endGamePopup();
         location.href = '#/games/menu';
       } else {
+        //Delete all forbidden circles
+        var forbidden = document.getElementsByClassName("forbidden");
+        var forbiddenCadre = document.getElementsByClassName("forbidden-cadre");
+        var length = forbidden.length;
+        for(var y = length-1; y >= 0; y--) {
+          forbidden[y].classList.remove("forbidden");
+          forbiddenCadre[y].classList.remove("forbidden-cadre");
+        }
         nextStepSecondGame();
       }
-    } else {
+    }
+    else {
+      //Put a forbidden circle on the image
+      document.getElementById(elem).className += " forbidden";
+      document.getElementById(cadre).className += " forbidden-cadre";
       failGamePopup();
     }
   };
