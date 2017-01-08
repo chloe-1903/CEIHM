@@ -239,7 +239,9 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
           { text : 'Continuer',
             type: 'button-positive',
             onTap: function(e) {
-              audio.pause();
+              if(audio) {
+                audio.pause();
+              }
             }}
             ]
       });
