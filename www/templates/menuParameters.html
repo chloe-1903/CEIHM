@@ -1,20 +1,21 @@
-<ion-view>
-  <ion-header-bar class="bar-header">
-      <h1 class="title">Menu principal</h1>
-  </ion-header-bar>
+<ion-view title="Menu des paramètres">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>Retour</ion-nav-back-button>
+  </ion-nav-bar>
+
   <ion-content class="center">
 
     <div class="row">
-        <div class="col col-offset-25 col-50 center">
-        <h2>Les pièces de la maison</h2>
-        </div>
+      <div class="col col-offset-25 col-50 center">
+        <h2>Paramètres</h2>
+      </div>
     </div>
 
     <div class="row">
       <div class="col col-30"></div>
       <div class="col col-40">
-        <a class="button button-block button-positive" href="#/games/menu">
-          Jouer
+        <a class="button button-block button-positive" href="#/params/1">
+          Quels objets vont dans cette pièce ?
         </a>
       </div>
       <div class="col col-30"></div>
@@ -23,8 +24,8 @@
     <div class="row">
       <div class="col col-30"></div>
       <div class="col col-40">
-        <a class="button button-block button-positive" href="#/params/menu">
-          Paramètres
+        <a class="button button-block button-positive" href="#/params/2">
+          Trouver la bonne pièce !
         </a>
       </div>
       <div class="col col-30"></div>
@@ -33,8 +34,8 @@
     <div class="row">
       <div class="col col-30"></div>
       <div class="col col-40">
-        <a class="button button-block button-positive" ng-click="exitApp();">
-          Quitter
+        <a class="button button-block button-positive" href="#/">
+          Retour
         </a>
       </div>
       <div class="col col-30"></div>
