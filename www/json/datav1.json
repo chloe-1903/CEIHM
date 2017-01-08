@@ -21,6 +21,13 @@
         "toilets.jpg",
         "bathroom.jpg"
       ]
+    },
+    {
+      "name":"Verre à pied",
+      "image":"glass.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
     }
   ],
   "actions":[],
