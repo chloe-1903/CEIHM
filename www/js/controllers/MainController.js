@@ -214,7 +214,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   };
 
 
-  $scope.showGameHelp = function(type) {
+  $scope.showGameHelp = function(type, sound) {
     $http.get('../json/helps.json').success(function(data) {
       var alertPopup = $ionicPopup.show({
         title: 'Les règles du jeu',
@@ -227,6 +227,9 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
             onTap: function(e) {
               // e.preventDefault() will stop the popup from closing when tapped.
               e.preventDefault();
+              //TODO Arreter l'audio
+              var audio = new Audio('../sound/'+sound+'.mp3');
+              audio.play();
             }
           },
           { text : 'Continuer',
