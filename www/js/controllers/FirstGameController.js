@@ -1,4 +1,4 @@
-var app = angular.module('application');
+/*var app = angular.module('application');
 
 app.controller('FirstGameCtrl', function($scope, $http, $ionicPopup) {
 
@@ -9,7 +9,6 @@ app.controller('FirstGameCtrl', function($scope, $http, $ionicPopup) {
   // Initialize the rooms and the object/action for the second game
   $scope.initFirstGame = function () {
     $http.get('../json/datav1.json').success(function(data) {
-      console.log("eezf");
       $scope.questionRoomList = [];
       var roomsArray = data.rooms.slice();
       while($scope.questionRoomList.length < $scope.paramsFirstGame.nb_questions){
@@ -22,7 +21,6 @@ app.controller('FirstGameCtrl', function($scope, $http, $ionicPopup) {
       }
 
       $scope.remaining_questions = $scope.paramsFirstGame.nb_questions;
-
       nextStepFirstGame();
     });
 
@@ -64,12 +62,11 @@ app.controller('FirstGameCtrl', function($scope, $http, $ionicPopup) {
         $scope.fgAnswers.push(answersToMix[nb]);
         answersToMix.splice(nb,1);
       }
-
     });
   }
 
   // Check if the answer is valid (for the second game)
-  $scope.checkAnswerSecondGame = function (answer) {
+  $scope.checkAnswerFirstGame = function (answer) {
     if(answer == $scope.solution.image){
       // TODO : Faire en sorte que les messages d'alerte soient bloquants
       successGamePopup();
@@ -127,3 +124,4 @@ app.controller('FirstGameCtrl', function($scope, $http, $ionicPopup) {
   };
 
 });
+*/

@@ -2,13 +2,86 @@ var app = angular.module('application');
 
 app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
-  $scope.paramsFirstGame = {};
+  $scope.paramsFirstGame = {"nb_questions":3, "nb_objects":4, "nb_actions":0};
   $scope.paramsSecondGame = {"nb_questions":3, "nb_rooms":4};
 
   // Should exit the app but not sure it actually works...
   $scope.exitApp = function () {
     ionic.Platform.exitApp();
   };
+
+  // TODO : Prendre en compte les actions !
+
+  // Initialize the rooms and the object/action for the second game
+  $scope.initFirstGame = function () {
+    $http.get('../json/datav1.json').success(function(data) {
+      $scope.questionRoomList = [];
+      var roomsArray = data.rooms.slice();
+      while($scope.questionRoomList.length < $scope.paramsFirstGame.nb_questions){
+        var nb = Math.floor(Math.random()*roomsArray.length);
+        $scope.questionRoomList.push(roomsArray[nb]);
+        roomsArray.splice(nb,1);
+        if(roomsArray.length === 0){
+          roomsArray = data.rooms.slice();
+        }
+      }
+
+      $scope.remaining_questions = $scope.paramsFirstGame.nb_questions;
+      nextStepFirstGame();
+    });
+
+  };
+
+  function nextStepFirstGame(){
+    $http.get('../json/datav1.json').success(function(data) {
+      $scope.questionRoom = $scope.questionRoomList[$scope.remaining_questions - 1];
+
+      var randMax = $scope.questionRoom.ref_objects.length < $scope.paramsFirstGame.nb_objects ?
+        $scope.questionRoom.ref_objects.length : $scope.paramsFirstGame.nb_objects;
+      var nbGoodAnswers = Math.floor(Math.random() * randMax) + 1;
+      var nbBadAnswers = $scope.paramsFirstGame.nb_objects - nbGoodAnswers;
+
+      var refObjectsArray = $scope.questionRoom.ref_objects.slice();
+      $scope.fgGoodAnswers = [];
+      for(var i = 0 ; i < nbGoodAnswers ; i++){
+        var nb = Math.floor(Math.random()*refObjectsArray.length);
+        console.log(JSON.stringify(refObjectsArray));
+        var objToAdd = data.objects.find(function (elmt) {
+          if(elmt.image != undefined && elmt.image == refObjectsArray[nb])
+            return elmt;
+        });
+        $scope.fgGoodAnswers.push(objToAdd);
+        refObjectsArray.splice(nb,1);
+      }
+
+      var objectsArray = data.objects.slice();
+      var allBadObjectsArray = objectsArray.filter(function (elmt) {
+        return $scope.questionRoom.ref_objects.indexOf(elmt.image) === -1;
+      });
+
+      $scope.fgBadAnswers = [];
+      while($scope.fgBadAnswers.length < nbBadAnswers){
+        nb = Math.floor(Math.random()*allBadObjectsArray.length);
+        $scope.fgBadAnswers.push(allBadObjectsArray[nb]);
+        allBadObjectsArray.splice(nb,1);
+      }
+
+      console.log("GOOD : "+JSON.stringify($scope.fgGoodAnswers));
+
+
+      var answersToMix = $scope.fgBadAnswers.concat($scope.fgGoodAnswers);
+      console.log("MIX : "+JSON.stringify(answersToMix));
+      $scope.fgAnswers = [];
+      while($scope.fgAnswers.length < $scope.paramsFirstGame.nb_objects){
+        var nb = Math.floor(Math.random() * answersToMix.length);
+        $scope.fgAnswers.push(answersToMix[nb]);
+        answersToMix.splice(nb,1);
+      }
+
+      console.log("NB OBJ : "+$scope.paramsFirstGame.nb_objects);
+      console.log("ANSWERS : "+JSON.stringify($scope.fgAnswers));
+    });
+  }
 
   // Initialize the rooms and the object/action for the second game
   $scope.initSecondGame = function () {

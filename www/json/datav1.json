@@ -28,6 +28,20 @@
       "ref_rooms":[
         "kitchen.jpg"
       ]
+    },
+    {
+      "name":"DVD",
+      "image":"dvd.jpg",
+      "ref_rooms":[
+        "livingroom.jpg"
+      ]
+    },
+    {
+      "name":"Chaussons",
+      "image":"chausson.jpg",
+      "ref_rooms":[
+        "bedroom.jpg"
+      ]
     }
   ],
   "actions":[],
@@ -52,19 +66,17 @@
     {
       "name": "Salon",
       "image": "livingroom.jpg",
-      "ref_objects": [],
+      "ref_objects": [
+        "dvd.jpg"
+      ],
       "ref_actions": []
     },
     {
       "name": "Chambre",
       "image": "bedroom.jpg",
-      "ref_objects": [],
-      "ref_actions": []
-    },
-    {
-      "name":"Bureau",
-      "image":"desktop.jpg",
-      "ref_objects": [],
+      "ref_objects": [
+        "chausson.jpg"
+      ],
       "ref_actions": []
     },
     {
