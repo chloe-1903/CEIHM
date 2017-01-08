@@ -2,8 +2,9 @@ var app = angular.module('application');
 
 app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
-  $scope.paramsFirstGame = {"nb_questions":3, "nb_objects":4, "nb_actions":0};
-  $scope.paramsSecondGame = {"nb_questions":3, "nb_rooms":4};
+  $scope.paramsFirstGame = { "nb_objects":4, "nb_actions":0, "nb_questions":3, "nb_try":2};
+  $scope.paramsSecondGame = { "play_type" : "action", "nb_rooms":4, "nb_questions":3, "nb_try":2};
+
 
   // Should exit the app but not sure it actually works...
   $scope.exitApp = function () {
