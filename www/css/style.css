@@ -46,14 +46,42 @@
   margin-left: 25%;
 }
 
+.popup .popup-body {
+  text-align: justify;
+}
+
 .failPopup .popup-body, .successPopup .popup-body, .endPopup .popup-body {
   text-align: center;
   font-size: 18px;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
-.failPopup .popup-head h3, .successPopup .popup-head h3, .endPopup .popup-head h3 {
-  font-size: 22px !important;
+.popup .popup-head h3 {
+  font-size: 22px;
+}
+
+.successPopup .popup {
+  background-image: url('../img/Tick_Mark.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: calc(50% + 25px);
+  background-size: 80px;
+}
+
+.failPopup .popup {
+  background-image: url('../img/forbid_sign.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: calc(50% + 25px);
+  background-size: 80px;
+}
+
+.endPopup .popup {
+  background-image: url('../img/Smile.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: calc(50% + 25px);
+  background-size: 80px;
 }
 
 .scroll {
