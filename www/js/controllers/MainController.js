@@ -133,7 +133,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     $http.get('../json/helps.json').success(function(data) {
       var alertPopup = $ionicPopup.alert({
          title: 'Les paramètres',
-         template: data[type]
+         template: data[type],
+         okText: 'Continuer',
        });
 
     });
@@ -144,7 +145,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     $http.get('../json/helps.json').success(function(data) {
       var alertPopup = $ionicPopup.alert({
         title: 'Les règles du jeu',
-        template: data[type]
+        template: data[type],
+        okText: 'Continuer',
       });
 
     });
