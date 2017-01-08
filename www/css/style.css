@@ -83,6 +83,18 @@
   padding-bottom: 100px;
 }
 
+.gameHelp .button-clear {
+  position: absolute;
+  top: -230px;
+  right: -100px;
+  background-image: url(../img/Audio.png);
+  background-repeat: no-repeat;
+  background-size: 56px;
+  background-position: -5px -5px;
+}
+
+
+
 .scroll {
     width: 100%;
 }
