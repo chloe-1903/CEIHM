@@ -13,6 +13,16 @@
   height: 12em;
 }
 
+.tile-question {
+  text-shadow: 1px 1px 0 #000;
+  height: 12em;
+  padding-top: 50%;
+}
+
+.tile-question > span {
+  font-size: 10em;
+}
+
 .tile-tall {
   height: 20em;
 }
