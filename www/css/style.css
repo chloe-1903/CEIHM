@@ -40,7 +40,7 @@
 
 .popup {
   width: 450px !important;
-  height: 306px;
+  height: 300px;
   padding-bottom: 64px;
 }
 
@@ -104,10 +104,6 @@
 
 .gameHelp .popup-head h3 {
   font-size: 25px;
-}
-
-.gameHelp .popup-head {
-  padding: 10px 10px;
 }
 
 .scroll {
