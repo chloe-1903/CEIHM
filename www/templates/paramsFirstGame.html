@@ -12,27 +12,29 @@
 		</div>
 
 		<div class="row">
-			<label class="checkbox-inline col .col-25 col-offset-25"><input type="checkbox" value=""> Activer les objets</label>
-			<label class="checkbox-inline col .col-25"><input type="checkbox" value=""> Activer les actions</label>
+			<label class="checkbox-inline col .col-25 col-offset-25">
+				<input type="checkbox" ng-model="paramsFirstGame.objects_active"> Activer les objets</label>
+			<label class="checkbox-inline col .col-25">
+				<input type="checkbox" ng-model="paramsFirstGame.actions_active"> Activer les actions</label>
 			<div class="col .col-25"> </div>
 		</div>
 
 		<br/>
 
 		<div class="row">
-			<div class="col .col-25 col-offset-25">
+			<div class="col .col-25 col-offset-25" ng-class="{'disable': !paramsFirstGame.objects_active}">
 				<div class="row"> Nombre d'objets ({{paramsFirstGame.nb_objects}})</div>
-				<div class="item range row">
+				<div class="item range row" ng-class="{'disable': !paramsFirstGame.objects_active}">
 				  1
-				  <input step="1" min="1" max="4" type="range" ng-model="paramsFirstGame.nb_objects" >
+				  <input step="1" min="1" max="4" type="range" ng-model="paramsFirstGame.nb_objects" ng-disabled="!paramsFirstGame.objects_active">
 				  4
 				</div>
 			</div>
-			<div class="col .col-25">
+			<div class="col .col-25" ng-class="{'disable': !paramsFirstGame.actions_active}">
 				<div class="row"> Nombre d'actions ({{paramsFirstGame.nb_actions}})</div>
-				<div class="item range row">
+				<div class="item range row" ng-class="{'disable': !paramsFirstGame.actions_active}">
 				  1
-				  <input step="1" min="1" max="4" type="range" ng-model="paramsFirstGame.nb_actions">
+				  <input step="1" min="1" max="4" type="range" ng-model="paramsFirstGame.nb_actions" ng-disabled=!paramsFirstGame.actions_active>
 				  4
 				</div>
 			</div>
@@ -42,10 +44,10 @@
 		<br/>
 
 		<div class="row">
-			<label class="checkbox-inline col  col-offset-33"><input type="checkbox" value=""> Activer la description textuelle des images</label>
+			<label class="checkbox-inline col  col-offset-33"><input type="checkbox" ng-model="paramsFirstGame.text_descr"> Activer la description textuelle des images</label>
 		</div>
 		<div class="row">
-			<label class="checkbox-inline col  col-offset-33"><input type="checkbox" value=""> Activer la description vocale des images</label>
+			<label class="checkbox-inline col  col-offset-33"><input type="checkbox" ng-model="paramsFirstGame.voc_descr"> Activer la description vocale des images</label>
 		</div>
 
 		<br/>
@@ -60,10 +62,10 @@
 				</div>
 			</div>
 			<div class="col .col-25">
-				<div class="row"> Nombre de tentatives possibles</div>
+				<div class="row"> Nombre de tentatives possibles ({{paramsFirstGame.nb_try}})</div>
 				<div class="item range row">
 				  1
-				  <input step="1" min="1" max="5" type="range">
+				  <input step="1" min="1" max="5" type="range" ng-model="paramsFirstGame.nb_try">
 				  5
 				</div>
 			</div>
