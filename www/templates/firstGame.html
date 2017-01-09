@@ -31,6 +31,20 @@
     </div>
 
     <div class="row">
+      <div class="col col-20 tile-text">
+        Autre pièce
+      </div>
+
+      <div class="col col-60 tile-text">
+        {{questionRoom.name}}
+      </div>
+
+      <div class="col col-20 tile-text">
+        Autre pièce
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col col-25">
         <div class="button button-block tile-image"
              style="background-image: url('../img/{{fgAnswers[0].image}}')" ng-click="setSelected(fgAnswers[0])">
@@ -55,5 +69,24 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col col-25 tile-text">
+        {{fgAnswers[0].name}}
+      </div>
+
+      <div class="col col-25 tile-text">
+        {{fgAnswers[1].name}}
+      </div>
+
+      <div class="col col-25 tile-text">
+        {{fgAnswers[2].name}}
+      </div>
+
+      <div class="col col-25 tile-text">
+        {{fgAnswers[3].name}}
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>
