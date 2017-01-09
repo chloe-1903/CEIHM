@@ -13,7 +13,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   // TODO : Prendre en compte les actions !
 
-  // Initialize the rooms and the object/action for the second game
+  // Initialize the rooms and the object/action for the first game
   $scope.initFirstGame = function () {
     $http.get('../json/datav1.json').success(function(data) {
       $scope.questionRoomList = [];
@@ -33,18 +33,22 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   };
 
+  // Resets the data for a new game and generates a new set of objects/actions
   function nextStepFirstGame(){
     $scope.fgSelected = undefined;
     $scope.alreadyAnswered = [];
 
     $http.get('../json/datav1.json').success(function(data) {
+      // Retrieves the question room in the question list
       $scope.questionRoom = $scope.questionRoomList[$scope.remaining_questions - 1];
 
+      // Defining the number of good and bad answers randomly (according to the number of objects defined and the actual referenced objects)
       var randMax = $scope.questionRoom.ref_objects.length < $scope.paramsFirstGame.nb_objects ?
         $scope.questionRoom.ref_objects.length : $scope.paramsFirstGame.nb_objects;
       var nbGoodAnswers = Math.floor(Math.random() * randMax) + 1;
       var nbBadAnswers = $scope.paramsFirstGame.nb_objects - nbGoodAnswers;
 
+      // Building the good answers array
       var refObjectsArray = $scope.questionRoom.ref_objects.slice();
       $scope.fgGoodAnswers = [];
       for(var i = 0 ; i < nbGoodAnswers ; i++){
@@ -58,11 +62,13 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         refObjectsArray.splice(nb,1);
       }
 
+      // Retrieving all the objects not referenced in the question room
       var objectsArray = data.objects.slice();
       var allBadObjectsArray = objectsArray.filter(function (elmt) {
         return $scope.questionRoom.ref_objects.indexOf(elmt.image) === -1;
       });
 
+      // Building the bad answers array
       $scope.fgBadAnswers = [];
       while($scope.fgBadAnswers.length < nbBadAnswers){
         nb = Math.floor(Math.random()*allBadObjectsArray.length);
@@ -70,6 +76,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         allBadObjectsArray.splice(nb,1);
       }
 
+      // Mixing randomly the good and bad answers
       var answersToMix = $scope.fgBadAnswers.concat($scope.fgGoodAnswers);
       $scope.fgAnswers = [];
       while($scope.fgAnswers.length < $scope.paramsFirstGame.nb_objects){
@@ -80,6 +87,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     });
   }
 
+  // Checking answer when selecting the main question room in the first game
   $scope.checkMainRoomAnswerFirstGame = function (elem, cadre, text) {
 
     if($scope.fgSelected !== undefined && $scope.alreadyAnswered.indexOf($scope.fgSelected) === -1){
@@ -106,6 +114,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     }
   };
 
+  // Checking answer when selecting the "other room" button
   $scope.checkOtherRoomAnswerFirstGame = function (elem, cadre, text) {
     if($scope.fgSelected !== undefined && $scope.alreadyAnswered.indexOf($scope.fgSelected) === -1){
       if($scope.fgSelected.ref_rooms.indexOf($scope.questionRoom.image) === -1){
@@ -135,6 +144,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     }
   };
 
+  // Assigning the selected item in the scope for the first
   $scope.setSelected = function (selectedItem) {
     $scope.fgSelected = selectedItem;
   };
@@ -160,20 +170,27 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   };
 
+  // Resets the data for a new game and generates a new set of rooms
   function nextStepSecondGame(){
     $http.get('../json/datav1.json').success(function(data) {
+
+      // Retrieves the question room in the question list
       $scope.question = $scope.questionList[$scope.remaining_questions - 1];
+
+      // Selects randomly the solution in the referenced rooms of the question
       var nb = Math.floor(Math.random()*$scope.question.ref_rooms.length);
       $scope.solution = data.rooms.find(function (elmt) {
         if(elmt.image != undefined && elmt.image == $scope.question.ref_rooms[nb])
           return elmt;
       });
 
+      // Selects all the rooms which are not referenced in the question
       var roomsArray = data.rooms.slice();
       var allBadRoomsArray = roomsArray.filter(function (elmt) {
         return $scope.question.ref_rooms.indexOf(elmt.image) === -1;
       });
 
+      // Randomly choose the bad answers
       $scope.badrooms = [];
       while($scope.badrooms.length < $scope.paramsSecondGame.nb_rooms - 1){
         nb = Math.floor(Math.random()*allBadRoomsArray.length);
@@ -181,6 +198,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         allBadRoomsArray.splice(nb,1);
       }
 
+      // Inserts randomly the solution in the bad answers
       nb = Math.floor(Math.random()*$scope.paramsSecondGame.nb_rooms);
       $scope.badrooms.splice(nb, 0, $scope.solution);
       $scope.rooms = $scope.badrooms.slice();
