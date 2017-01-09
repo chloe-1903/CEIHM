@@ -12,19 +12,19 @@
     <!-- TODO : Là aussi codé en dur ! Devra etre généré par un ng-repeat -->
     <div class="row">
       <div class="col col-20">
-        <div class="button button-block tile-question tile-tall">
+        <div class="button button-block tile-question tile-tall" ng-click="checkOtherRoomAnswerFirstGame(null, null, null)">
           <span>?</span>
         </div>
       </div>
 
       <div class="col col-60">
         <div class="button button-block tile-image tile-tall"
-             style="background-image: url('../img/{{questionRoom.image}}')">
+             style="background-image: url('../img/{{questionRoom.image}}')" ng-click="checkMainRoomAnswerFirstGame(null, null, null)">
         </div>
       </div>
 
       <div class="col col-20">
-        <div class="button button-block tile-question tile-tall">
+        <div class="button button-block tile-question tile-tall" ng-click="checkOtherRoomAnswerFirstGame(null, null, null)">
           <span>?</span>
         </div>
       </div>
@@ -33,25 +33,25 @@
     <div class="row">
       <div class="col col-25">
         <div class="button button-block tile-image"
-             style="background-image: url('../img/{{fgAnswers[0].image}}')">
+             style="background-image: url('../img/{{fgAnswers[0].image}}')" ng-click="setSelected(fgAnswers[0])">
         </div>
       </div>
 
       <div class="col col-25">
         <div class="button button-block tile-image"
-             style="background-image: url('../img/{{fgAnswers[1].image}}')">
+             style="background-image: url('../img/{{fgAnswers[1].image}}')" ng-click="setSelected(fgAnswers[1])">
         </div>
       </div>
 
       <div class="col col-25">
         <div class="button button-block tile-image"
-             style="background-image: url('../img/{{fgAnswers[2].image}}')">
+             style="background-image: url('../img/{{fgAnswers[2].image}}')" ng-click="setSelected(fgAnswers[2])">
         </div>
       </div>
 
       <div class="col col-25">
         <div class="button button-block tile-image"
-             style="background-image: url('../img/{{fgAnswers[3].image}}')">
+             style="background-image: url('../img/{{fgAnswers[3].image}}')" ng-click="setSelected(fgAnswers[3])">
         </div>
       </div>
     </div>

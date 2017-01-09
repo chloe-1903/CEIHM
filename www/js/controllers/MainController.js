@@ -34,6 +34,9 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   };
 
   function nextStepFirstGame(){
+    $scope.fgSelected = undefined;
+    $scope.alreadyAnswered = [];
+
     $http.get('../json/datav1.json').success(function(data) {
       $scope.questionRoom = $scope.questionRoomList[$scope.remaining_questions - 1];
 
@@ -67,22 +70,74 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         allBadObjectsArray.splice(nb,1);
       }
 
-      console.log("GOOD : "+JSON.stringify($scope.fgGoodAnswers));
-
-
       var answersToMix = $scope.fgBadAnswers.concat($scope.fgGoodAnswers);
-      console.log("MIX : "+JSON.stringify(answersToMix));
       $scope.fgAnswers = [];
       while($scope.fgAnswers.length < $scope.paramsFirstGame.nb_objects){
         var nb = Math.floor(Math.random() * answersToMix.length);
         $scope.fgAnswers.push(answersToMix[nb]);
         answersToMix.splice(nb,1);
       }
-
-      console.log("NB OBJ : "+$scope.paramsFirstGame.nb_objects);
-      console.log("ANSWERS : "+JSON.stringify($scope.fgAnswers));
     });
   }
+
+  $scope.checkMainRoomAnswerFirstGame = function (elem, cadre, text) {
+
+    if($scope.fgSelected !== undefined && $scope.alreadyAnswered.indexOf($scope.fgSelected) === -1){
+      if($scope.fgGoodAnswers.indexOf($scope.fgSelected) > -1){
+        // success
+        $scope.alreadyAnswered.push($scope.fgSelected);
+        alert("Yes !");
+      } else if($scope.fgBadAnswers.indexOf($scope.fgSelected) > -1) {
+        // fail
+        alert("Noooo");
+      }
+    }
+
+    if($scope.alreadyAnswered.length === $scope.paramsFirstGame.nb_objects){
+      // fin du jeu !
+      alert("Well done !");
+      $scope.remaining_questions--;
+      if($scope.remaining_questions === 0){
+        alert("Finished !");
+        location.href = '#/games/menu';
+      } else {
+        nextStepFirstGame();
+      }
+    }
+  };
+
+  $scope.checkOtherRoomAnswerFirstGame = function (elem, cadre, text) {
+    if($scope.fgSelected !== undefined && $scope.alreadyAnswered.indexOf($scope.fgSelected) === -1){
+      if($scope.fgSelected.ref_rooms.indexOf($scope.questionRoom.image) === -1){
+        // success
+        $scope.alreadyAnswered.push($scope.fgSelected);
+        alert("Yes !");
+      } else if($scope.fgSelected.ref_rooms.length > 1){
+        // success
+        $scope.alreadyAnswered.push($scope.fgSelected);
+        alert("Yes !");
+      } else {
+        // fail
+        alert("Noooo");
+      }
+    }
+
+    if($scope.alreadyAnswered.length === $scope.paramsFirstGame.nb_objects){
+      // fin du jeu !
+      alert("Well done !");
+      $scope.remaining_questions--;
+      if($scope.remaining_questions === 0){
+        alert("Finished !");
+        location.href = '#/games/menu';
+      } else {
+        nextStepFirstGame();
+      }
+    }
+  };
+
+  $scope.setSelected = function (selectedItem) {
+    $scope.fgSelected = selectedItem;
+  };
 
   // Initialize the rooms and the object/action for the second game
   $scope.initSecondGame = function () {
