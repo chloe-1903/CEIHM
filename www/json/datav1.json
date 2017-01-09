@@ -59,7 +59,8 @@
       "name": "Cuisine",
       "image": "kitchen.jpg",
       "ref_objects": [
-        "knife.jpg"
+        "knife.jpg",
+        "glass.jpg"
       ],
       "ref_actions": []
     },
