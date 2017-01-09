@@ -33,9 +33,14 @@
   text-align: center;
 }
 
+#jeu-2 .tile-text {
+  font-size: 25px;
+  margin-top: 80px;
+}
+
 .popup {
   width: 450px !important;
-  height: 300px;
+  height: 306px;
   padding-bottom: 64px;
 }
 
@@ -93,7 +98,17 @@
   background-position: -5px -5px;
 }
 
+.gameHelp .popup-body {
+  font-size: 18px;
+}
 
+.gameHelp .popup-head h3 {
+  font-size: 25px;
+}
+
+.gameHelp .popup-head {
+  padding: 10px 10px;
+}
 
 .scroll {
     width: 100%;
