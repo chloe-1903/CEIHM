@@ -150,3 +150,11 @@
 .cadre-none {
   display: none;
 }
+
+.disable{
+  color: #d3d3d3;
+}
+
+input[disabled] {
+    color: #d3d3d3;
+}

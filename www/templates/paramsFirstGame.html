@@ -12,27 +12,29 @@
 		</div>
 
 		<div class="row">
-			<label class="checkbox-inline col .col-25 col-offset-25"><input type="checkbox" value=""> Activer les objets</label>
-			<label class="checkbox-inline col .col-25"><input type="checkbox" value=""> Activer les actions</label>
+			<label class="checkbox-inline col .col-25 col-offset-25">
+				<input type="checkbox" value="" ng-model="paramsFirstGame.objet_active"> Activer les objets</label>
+			<label class="checkbox-inline col .col-25">
+				<input type="checkbox" value="" ng-model="paramsFirstGame.action_active"> Activer les actions</label>
 			<div class="col .col-25"> </div>
 		</div>
 
 		<br/>
 
 		<div class="row">
-			<div class="col .col-25 col-offset-25">
+			<div class="col .col-25 col-offset-25" ng-class="{'disable': !paramsFirstGame.objet_active}">
 				<div class="row"> Nombre d'objets ({{paramsFirstGame.nb_objects}})</div>
-				<div class="item range row">
+				<div class="item range row" ng-class="{'disable': !paramsFirstGame.objet_active}">
 				  1
-				  <input step="1" min="1" max="4" type="range" ng-model="paramsFirstGame.nb_objects" >
+				  <input step="1" min="1" max="4" type="range" ng-model="paramsFirstGame.nb_objects" ng-disabled=!paramsFirstGame.objet_active>
 				  4
 				</div>
 			</div>
-			<div class="col .col-25">
+			<div class="col .col-25" ng-class="{'disable': !paramsFirstGame.action_active}">
 				<div class="row"> Nombre d'actions ({{paramsFirstGame.nb_actions}})</div>
-				<div class="item range row">
+				<div class="item range row" ng-class="{'disable': !paramsFirstGame.action_active}">
 				  1
-				  <input step="1" min="1" max="4" type="range" ng-model="paramsFirstGame.nb_actions">
+				  <input step="1" min="1" max="4" type="range" ng-model="paramsFirstGame.nb_actions" ng-disabled=!paramsFirstGame.action_active>
 				  4
 				</div>
 			</div>
