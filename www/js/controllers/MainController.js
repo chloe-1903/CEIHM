@@ -28,6 +28,18 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       }
 
       $scope.remaining_questions = $scope.paramsFirstGame.nb_questions;
+
+      //Supprime les trucs vert
+      var trueElem = document.getElementsByClassName("true");
+      var trueCadre = document.getElementsByClassName("true-cadre");
+      var length = trueElem.length;
+      console.log(trueElem.length);
+      for(var y = length-1; y >= 0; y--) {
+        console.log(trueElem[y]);
+        trueElem[y].classList.remove("true");
+        trueCadre[y].classList.remove("true-cadre");
+      }
+
       nextStepFirstGame();
     });
 
@@ -93,23 +105,13 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     if($scope.fgSelected !== undefined && $scope.alreadyAnswered.indexOf($scope.fgSelected) === -1){
       if($scope.fgGoodAnswers.indexOf($scope.fgSelected) > -1){
         // success
-        $scope.alreadyAnswered.push($scope.fgSelected);
-        alert("Yes !");
+        //ajout du truc vert
+        document.getElementById($scope.elem).className += " true";
+        document.getElementById($scope.cadre).className += " true-cadre";
+        successGamePopupGame1();
       } else if($scope.fgBadAnswers.indexOf($scope.fgSelected) > -1) {
         // fail
-        alert("Noooo");
-      }
-    }
-
-    if($scope.alreadyAnswered.length === $scope.paramsFirstGame.nb_objects){
-      // fin du jeu !
-      alert("Well done !");
-      $scope.remaining_questions--;
-      if($scope.remaining_questions === 0){
-        alert("Finished !");
-        location.href = '#/games/menu';
-      } else {
-        nextStepFirstGame();
+        failGamePopup();
       }
     }
   };
@@ -119,34 +121,28 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     if($scope.fgSelected !== undefined && $scope.alreadyAnswered.indexOf($scope.fgSelected) === -1){
       if($scope.fgSelected.ref_rooms.indexOf($scope.questionRoom.image) === -1){
         // success
-        $scope.alreadyAnswered.push($scope.fgSelected);
-        alert("Yes !");
+        //ajout du truc vert
+        document.getElementById($scope.elem).className += " true";
+        document.getElementById($scope.cadre).className += " true-cadre";
+        successGamePopupGame1();
       } else if($scope.fgSelected.ref_rooms.length > 1){
         // success
-        $scope.alreadyAnswered.push($scope.fgSelected);
-        alert("Yes !");
+        //ajout du truc vert
+        document.getElementById($scope.elem).className += " true";
+        document.getElementById($scope.cadre).className += " true-cadre";
+        successGamePopupGame1();
       } else {
         // fail
-        alert("Noooo");
-      }
-    }
-
-    if($scope.alreadyAnswered.length === $scope.paramsFirstGame.nb_objects){
-      // fin du jeu !
-      alert("Well done !");
-      $scope.remaining_questions--;
-      if($scope.remaining_questions === 0){
-        alert("Finished !");
-        location.href = '#/games/menu';
-      } else {
-        nextStepFirstGame();
+        failGamePopup();
       }
     }
   };
 
   // Assigning the selected item in the scope for the first
-  $scope.setSelected = function (selectedItem) {
+  $scope.setSelected = function (selectedItem, elem, cadre) {
     $scope.fgSelected = selectedItem;
+    $scope.elem = elem;
+    $scope.cadre = cadre;
   };
 
   // Initialize the rooms and the object/action for the second game
@@ -225,6 +221,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     }
   };
 
+  /* ========= Global popups ========= */
+
   function failGamePopup(){
     var alertFailPopup = $ionicPopup.alert({
       title: 'Raté !',
@@ -233,6 +231,66 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       cssClass: 'failPopup'
     });
   }
+
+  function endGamePopup() {
+    var alertEndPopup = $ionicPopup.alert({
+      title: "Fin du jeu",
+      template: "Merci d'avoir joué !",
+      okText: 'Continuer',
+      cssClass: 'endPopup'
+    });
+    alertEndPopup.then(function(res) {
+      location.href = '#/games/menu';
+    });
+  }
+
+  $scope.showHelp = function(type) {
+    $http.get('../json/helps.json').success(function(data) {
+      var alertPopup = $ionicPopup.alert({
+        title: 'Les paramètres',
+        template: data[type],
+        okText: 'Continuer',
+      });
+
+    });
+  };
+
+  $scope.showGameHelp = function(type, sound) {
+    $http.get('../json/helps.json').success(function(data) {
+      var audio;
+      var alertPopup = $ionicPopup.show({
+        title: 'Les règles du jeu',
+        template: data[type],
+        okText: 'Continuer',
+        cssClass: 'gameHelp',
+        buttons: [
+          { text: '',
+            type: 'button-clear',
+            onTap: function(e) {
+              // e.preventDefault() will stop the popup from closing when tapped.
+              e.preventDefault();
+              if(audio) {
+                audio.pause();
+              } else {
+                audio = new Audio('../sound/' + sound + '.mp3');
+                audio.play();
+              }
+            }
+          },
+          { text : 'Continuer',
+            type: 'button-positive',
+            onTap: function(e) {
+              if(audio) {
+                audio.pause();
+              }
+            }}
+        ]
+      });
+
+    });
+  };
+
+  /* ========= Game 2 popups ========= */
 
   function successGamePopup() {
     var alertSuccessPopup = $ionicPopup.alert({
@@ -269,63 +327,81 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     });
   }
 
-  function endGamePopup() {
-    var alertEndPopup = $ionicPopup.alert({
-      title: "Fin du jeu",
-      template: "Merci d'avoir joué !",
+  /* ========= Game 1 popups ========= */
+
+  function successGamePopupGame1() {
+    var alertSuccessPopup = $ionicPopup.alert({
+      title: 'Bien joué !',
+      template: 'Vous avez bien placé cet objet !',
       okText: 'Continuer',
-      cssClass: 'endPopup'
+      cssClass: 'successPopup'
     });
-    alertEndPopup.then(function(res) {
-      location.href = '#/games/menu';
+    alertSuccessPopup.then(function (res) {
+      $scope.alreadyAnswered.push($scope.fgSelected);
+
+      if($scope.alreadyAnswered.length === $scope.paramsFirstGame.nb_objects) {
+        // fin du jeu !
+        endGamePopupGame1();
+      }
+    })
+  }
+
+  function endGamePopupGame1() {
+    var alertSuccessPopup = $ionicPopup.alert({
+      title: 'Bien joué !',
+      template: 'Vous avez placé tous les objets !',
+      okText: 'Continuer',
+      cssClass: 'successPopup'
+    });
+    alertSuccessPopup.then(function (res) {
+      $scope.remaining_questions--;
+      if($scope.remaining_questions === 0){
+        endGamePopup();
+      } else {
+        //Supprime les trucs vert
+        var trueElem = document.getElementsByClassName("true");
+        var trueCadre = document.getElementsByClassName("true-cadre");
+        var length = trueElem.length;
+        console.log(trueElem.length);
+        for (var y = length - 1; y >= 0; y--) {
+          console.log(trueElem[y]);
+          trueElem[y].classList.remove("true");
+          trueCadre[y].classList.remove("true-cadre");
+        }
+        nextStepFirstGame();
+      }
     });
   }
 
-  $scope.showHelp = function(type) {
-    $http.get('../json/helps.json').success(function(data) {
-      var alertPopup = $ionicPopup.alert({
-         title: 'Les paramètres',
-         template: data[type],
-         okText: 'Continuer',
-       });
-
+  /*
+  function endGamePopupGame1b() {
+    var alertSuccessPopup = $ionicPopup.alert({
+      title: 'Bien joué !',
+      template: 'Vous avez placé tous les objets !',
+      okText: 'Continuer',
+      cssClass: 'successPopup'
     });
-  };
+    alertSuccessPopup.then(function (res) {
+      $scope.remaining_questions--;
+      if($scope.remaining_questions === 0){
+        endGamePopup();
+      } else {
 
+        //Supprime les trucs vert
+        var trueElem = document.getElementsByClassName("true");
+        var trueCadre = document.getElementsByClassName("true-cadre");
+        var length = trueElem.length;
+        console.log(trueElem.length);
+        for (var y = length - 1; y >= 0; y--) {
+          console.log(trueElem[y]);
+          trueElem[y].classList.remove("true");
+          trueCadre[y].classList.remove("true-cadre");
+        }
 
-  $scope.showGameHelp = function(type, sound) {
-    $http.get('../json/helps.json').success(function(data) {
-      var audio;
-      var alertPopup = $ionicPopup.show({
-        title: 'Les règles du jeu',
-        template: data[type],
-        okText: 'Continuer',
-        cssClass: 'gameHelp',
-        buttons: [
-          { text: '',
-            type: 'button-clear',
-            onTap: function(e) {
-              // e.preventDefault() will stop the popup from closing when tapped.
-              e.preventDefault();
-              if(audio) {
-                audio.pause();
-              } else {
-                audio = new Audio('../sound/' + sound + '.mp3');
-                audio.play();
-              }
-            }
-          },
-          { text : 'Continuer',
-            type: 'button-positive',
-            onTap: function(e) {
-              if(audio) {
-                audio.pause();
-              }
-            }}
-            ]
-      });
-
+        nextStepFirstGame();
+      }
     });
-  };
 
+  }
+  */
 });
