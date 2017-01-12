@@ -185,7 +185,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
       // Selects randomly the solution in the referenced rooms of the question
       var nb = Math.floor(Math.random()*$scope.question.ref_rooms.length);
-      $scope.solution = data.rooms.find(function (elmt) {
+      $scope.solution = data.rooms.filter(function (elmt) {
         if(elmt.image != undefined && elmt.image == $scope.question.ref_rooms[nb])
           return elmt;
       });
@@ -206,14 +206,14 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
       // Inserts randomly the solution in the bad answers
       nb = Math.floor(Math.random()*$scope.paramsSecondGame.nb_rooms);
-      $scope.badrooms.splice(nb, 0, $scope.solution);
+      $scope.badrooms.splice(nb, 0, $scope.solution[0]);
       $scope.rooms = $scope.badrooms.slice();
     });
   }
 
   // Check if the answer is valid (for the second game)
   $scope.checkAnswerSecondGame = function (answer, elem, cadre, text) {
-    if(answer == $scope.solution.image){
+    if(answer == $scope.solution[0].image){
       successGamePopup();
       $scope.remaining_questions--;
     }
