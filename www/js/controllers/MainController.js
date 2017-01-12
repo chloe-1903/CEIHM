@@ -5,6 +5,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   $scope.paramsFirstGame = {"objects_active": true, "actions_active": false, "nb_objects":3, "nb_actions":1, "text_descr": true, "voc_descr": false, "nb_questions":3, "nb_try":2};
   $scope.paramsSecondGame = { "play_type" : "action", "nb_rooms":4, "text_descr": true, "voc_descr": false, "nb_questions":3, "nb_try":2};
 
+  var dataV1JsonPath = 'json/datav1.json';
 
   // Should exit the app but not sure it actually works...
   $scope.exitApp = function () {
@@ -15,7 +16,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   // Initialize the rooms and the object/action for the first game
   $scope.initFirstGame = function () {
-    $http.get('../json/datav1.json').success(function(data) {
+    $http.get(dataV1JsonPath).success(function(data) {
       $scope.questionRoomList = [];
       var roomsArray = data.rooms.slice();
       while($scope.questionRoomList.length < $scope.paramsFirstGame.nb_questions){
@@ -50,7 +51,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     $scope.fgSelected = undefined;
     $scope.alreadyAnswered = [];
 
-    $http.get('../json/datav1.json').success(function(data) {
+    $http.get('json/datav1.json').success(function(data) {
       // Retrieves the question room in the question list
       $scope.questionRoom = $scope.questionRoomList[$scope.remaining_questions - 1];
 
@@ -59,6 +60,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         $scope.questionRoom.ref_objects.length : $scope.paramsFirstGame.nb_objects;
       var nbGoodAnswers = Math.floor(Math.random() * randMax) + 1;
       var nbBadAnswers = $scope.paramsFirstGame.nb_objects - nbGoodAnswers;
+      console.log("Good answer: " + nbGoodAnswers);
+      console.log("Bad answer: " + nbBadAnswers);
 
       // Building the good answers array
       var refObjectsArray = $scope.questionRoom.ref_objects.slice();
@@ -66,13 +69,16 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       for(var i = 0 ; i < nbGoodAnswers ; i++){
         var nb = Math.floor(Math.random()*refObjectsArray.length);
         console.log(JSON.stringify(refObjectsArray));
-        var objToAdd = data.objects.find(function (elmt) {
+        var objToAdd = data.objects.filter(function (elmt) {
           if(elmt.image != undefined && elmt.image == refObjectsArray[nb])
             return elmt;
         });
-        $scope.fgGoodAnswers.push(objToAdd);
+        console.log(objToAdd);
+        // objToAdd returns an array, so assign it immediately to a var
+        $scope.fgGoodAnswers.push(objToAdd[0]);
         refObjectsArray.splice(nb,1);
       }
+      console.log($scope.fgGoodAnswers);
 
       // Retrieving all the objects not referenced in the question room
       var objectsArray = data.objects.slice();
@@ -87,15 +93,19 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         $scope.fgBadAnswers.push(allBadObjectsArray[nb]);
         allBadObjectsArray.splice(nb,1);
       }
+      console.log($scope.fgBadAnswers);
 
       // Mixing randomly the good and bad answers
       var answersToMix = $scope.fgBadAnswers.concat($scope.fgGoodAnswers);
+
       $scope.fgAnswers = [];
       while($scope.fgAnswers.length < $scope.paramsFirstGame.nb_objects){
         var nb = Math.floor(Math.random() * answersToMix.length);
         $scope.fgAnswers.push(answersToMix[nb]);
         answersToMix.splice(nb,1);
       }
+      console.log($scope.fgAnswers);
+      console.log(JSON.stringify($scope.fgAnswers));
     });
   }
 
@@ -147,7 +157,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   // Initialize the rooms and the object/action for the second game
   $scope.initSecondGame = function () {
-    $http.get('../json/datav1.json').success(function(data) {
+    $http.get('json/datav1.json').success(function(data) {
       $scope.questionList = [];
       var objectsArray = data.objects.slice();
       while($scope.questionList.length < $scope.paramsSecondGame.nb_questions){
@@ -168,7 +178,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   // Resets the data for a new game and generates a new set of rooms
   function nextStepSecondGame(){
-    $http.get('../json/datav1.json').success(function(data) {
+    $http.get('json/datav1.json').success(function(data) {
 
       // Retrieves the question room in the question list
       $scope.question = $scope.questionList[$scope.remaining_questions - 1];
