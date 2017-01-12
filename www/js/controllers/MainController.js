@@ -6,6 +6,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   $scope.paramsSecondGame = { "play_type" : "action", "nb_rooms":4, "text_descr": true, "voc_descr": false, "nb_questions":3, "nb_try":2};
 
   var dataV1JsonPath = 'json/datav1.json';
+  var helpsJsonPath = 'json/helps.json';
 
   // Should exit the app but not sure it actually works...
   $scope.exitApp = function () {
@@ -255,7 +256,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   }
 
   $scope.showHelp = function(type) {
-    $http.get('../json/helps.json').success(function(data) {
+    $http.get(helpsJsonPath).success(function(data) {
       var alertPopup = $ionicPopup.alert({
         title: 'Les paramètres',
         template: data[type],
@@ -266,7 +267,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   };
 
   $scope.showGameHelp = function(type, sound) {
-    $http.get('../json/helps.json').success(function(data) {
+    $http.get(helpsJsonPath).success(function(data) {
       var audio;
       var alertPopup = $ionicPopup.show({
         title: 'Les règles du jeu',
@@ -282,7 +283,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
               if(audio) {
                 audio.pause();
               } else {
-                audio = new Audio('../sound/' + sound + '.mp3');
+                audio = new Audio('sound/' + sound + '.mp3');
                 audio.play();
               }
             }
