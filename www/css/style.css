@@ -204,3 +204,9 @@ span#questions-left {
   margin-top: 8px;
   margin-right: 85px;
 }
+
+#question-image {
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+}

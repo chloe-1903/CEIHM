@@ -119,6 +119,41 @@
       "ref_rooms":[
         "bedroom.jpg"
       ]
+    },
+    {
+      "name":"Bol",
+      "image":"bol.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Bouteille d'eau",
+      "image":"bouteille-eau.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Éponge",
+      "image":"Eponges.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Plat",
+      "image":"plat-four.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Chaussettes",
+      "image":"chaussettes.jpg",
+      "ref_rooms":[
+        "bedroom.jpg"
+      ]
     }
   ],
   "actions":[],
@@ -146,7 +181,11 @@
         "assiettes.jpg",
         "cuillière.jpg",
         "fourchette.png",
-        "serviette-table.jpeg"
+        "serviette-table.jpeg",
+        "bol.jpg",
+        "bouteille-eau.jpg",
+        "Eponges.jpg",
+        "plat-four.jpg"
       ],
       "ref_actions": []
     },
@@ -164,7 +203,8 @@
       "image": "bedroom.jpg",
       "ref_objects": [
         "chausson.jpg",
-        "vetements.jpg"
+        "vetements.jpg",
+        "chaussettes.jpg"
       ],
       "ref_actions": []
     },
