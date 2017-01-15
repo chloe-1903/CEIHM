@@ -42,6 +42,83 @@
       "ref_rooms":[
         "bedroom.jpg"
       ]
+    },
+    {
+      "name":"Assiettes",
+      "image":"assiettes.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Cuillère",
+      "image":"cuillière.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Fourchette",
+      "image":"fourchette.png",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Parfum",
+      "image":"parfum.jpg",
+      "ref_rooms":[
+        "bathroom.jpg"
+      ]
+    },
+    {
+      "name":"Peigne",
+      "image":"peigne.jpg",
+      "ref_rooms":[
+        "bathroom.jpg"
+      ]
+    },
+    {
+      "name":"Peignoir",
+      "image":"peignoir.jpg",
+      "ref_rooms":[
+        "bathroom.jpg"
+      ]
+    },
+    {
+      "name":"Savon",
+      "image":"savon.jpg",
+      "ref_rooms":[
+        "bathroom.jpg"
+      ]
+    },
+    {
+      "name":"Serviette de table",
+      "image":"serviette-table.jpeg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Serviettes de bain",
+      "image":"serviettes-de-bain.jpg",
+      "ref_rooms":[
+        "bathroom.jpg"
+      ]
+    },
+    {
+      "name":"Télécommande",
+      "image":"telecommande.jpg",
+      "ref_rooms":[
+        "livingroom.jpg"
+      ]
+    },
+    {
+      "name":"Vêtements",
+      "image":"vetements.jpg",
+      "ref_rooms":[
+        "bedroom.jpg"
+      ]
     }
   ],
   "actions":[],
@@ -51,7 +128,12 @@
       "image": "bathroom.jpg",
       "ref_objects": [
         "toothbrush.jpg",
-        "pq.jpg"
+        "pq.jpg",
+        "parfum.jpg",
+        "peigne.jpg",
+        "peignoir.jpg",
+        "savon.jpg",
+        "serviettes-de-bain.jpg"
       ],
       "ref_actions": []
     },
@@ -60,7 +142,11 @@
       "image": "kitchen.jpg",
       "ref_objects": [
         "knife.jpg",
-        "glass.jpg"
+        "glass.jpg",
+        "assiettes.jpg",
+        "cuillière.jpg",
+        "fourchette.png",
+        "serviette-table.jpeg"
       ],
       "ref_actions": []
     },
@@ -68,7 +154,8 @@
       "name": "Salon",
       "image": "livingroom.jpg",
       "ref_objects": [
-        "dvd.jpg"
+        "dvd.jpg",
+        "telecommande.jpg"
       ],
       "ref_actions": []
     },
@@ -76,7 +163,8 @@
       "name": "Chambre",
       "image": "bedroom.jpg",
       "ref_objects": [
-        "chausson.jpg"
+        "chausson.jpg",
+        "vetements.jpg"
       ],
       "ref_actions": []
     },
