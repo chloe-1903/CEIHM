@@ -205,7 +205,7 @@ span#questions-left {
   margin-right: 85px;
 }
 
-#question-image {
+.question-image {
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-color: #fff;
