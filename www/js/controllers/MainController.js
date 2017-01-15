@@ -30,6 +30,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       }
 
       $scope.remaining_questions = $scope.paramsFirstGame.nb_questions;
+      $scope.current_question = $scope.paramsFirstGame.nb_questions - $scope.remaining_questions + 1;
 
       //Supprime les trucs vert
       var trueElem = document.getElementsByClassName("true");
@@ -160,7 +161,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     $scope.elem = elem;
     $scope.cadre = cadre;
 
-    //ICI
     removeSelected();
 
     //add selected
@@ -194,6 +194,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       }
 
       $scope.remaining_questions = $scope.paramsSecondGame.nb_questions;
+      $scope.current_question = $scope.paramsFirstGame.nb_questions - $scope.remaining_questions + 1;
 
       nextStepSecondGame();
     });
@@ -356,6 +357,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
           cadres[i].classList.remove("cadre-none");
         }
 
+        $scope.current_question++;
         nextStepSecondGame();
       }
     });
@@ -401,6 +403,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
           trueElem[y].classList.remove("true");
           trueCadre[y].classList.remove("true-cadre");
         }
+        $scope.current_question++;
         nextStepFirstGame();
       }
     });

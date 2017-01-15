@@ -199,3 +199,8 @@ input[disabled] {
 .item-selected {
   border: 3px solid #387ef5;
 }
+
+span#questions-left {
+  margin-top: 8px;
+  margin-right: 85px;
+}
