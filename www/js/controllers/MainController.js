@@ -372,11 +372,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     });
     alertSuccessPopup.then(function (res) {
       $scope.alreadyAnswered.push($scope.fgSelected);
-      console.log("ALREADY ANS : "+$scope.alreadyAnswered.length + " - TYPE : "+typeof $scope.alreadyAnswered.length);
-      console.log("NB OBJECTS : "+$scope.paramsFirstGame.nb_objects+ " - TYPE : "+typeof $scope.paramsFirstGame.nb_objects);
-      if($scope.alreadyAnswered.length == $scope.paramsFirstGame.nb_objects) {
+      if($scope.alreadyAnswered.length === parseInt($scope.paramsFirstGame.nb_objects)) {
         // fin du jeu !
-        console.log("FIN DU JEU ?");
         endGamePopupGame1();
       }
     })
