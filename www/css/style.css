@@ -210,3 +210,5 @@ span#questions-left {
   background-repeat: no-repeat;
   background-color: #fff;
 }
+
+/* Specific style for Android, as the default one is not really working */

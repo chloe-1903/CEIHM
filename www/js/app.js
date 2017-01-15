@@ -56,3 +56,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/');
 });
+
+// Platform specific configuration
+app.config(function($ionicConfigProvider) {
+  $ionicConfigProvider.navBar.alignTitle('center');
+
+});
