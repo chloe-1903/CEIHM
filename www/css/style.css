@@ -212,3 +212,6 @@ span#questions-left {
 }
 
 /* Specific style for Android, as the default one is not really working */
+.platform-android .center {
+  top: 33%;
+}
