@@ -116,12 +116,14 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     if($scope.fgSelected !== undefined && $scope.alreadyAnswered.indexOf($scope.fgSelected) === -1){
       if($scope.fgGoodAnswers.indexOf($scope.fgSelected) > -1){
         // success
+        removeSelected();
         //ajout du truc vert
         document.getElementById($scope.elem).className += " true";
         document.getElementById($scope.cadre).className += " true-cadre";
         successGamePopupGame1();
       } else if($scope.fgBadAnswers.indexOf($scope.fgSelected) > -1) {
         // fail
+        removeSelected();
         failGamePopup();
       }
     }
@@ -132,18 +134,21 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     if($scope.fgSelected !== undefined && $scope.alreadyAnswered.indexOf($scope.fgSelected) === -1){
       if($scope.fgSelected.ref_rooms.indexOf($scope.questionRoom.image) === -1){
         // success
+        removeSelected();
         //ajout du truc vert
         document.getElementById($scope.elem).className += " true";
         document.getElementById($scope.cadre).className += " true-cadre";
         successGamePopupGame1();
       } else if($scope.fgSelected.ref_rooms.length > 1){
         // success
+        removeSelected();
         //ajout du truc vert
         document.getElementById($scope.elem).className += " true";
         document.getElementById($scope.cadre).className += " true-cadre";
         successGamePopupGame1();
       } else {
         // fail
+        removeSelected();
         failGamePopup();
       }
     }
@@ -154,7 +159,25 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     $scope.fgSelected = selectedItem;
     $scope.elem = elem;
     $scope.cadre = cadre;
+
+    //ICI
+    removeSelected();
+
+    //add selected
+    if(document.getElementById($scope.cadre).style.backgroundImage != 'url("img/")') {
+      if (!document.getElementById($scope.cadre).classList.contains("true-cadre")) {
+        document.getElementById($scope.cadre).className += " item-selected";
+      }
+    }
   };
+
+  // remove selected border
+  function removeSelected() {
+    var selected = document.getElementsByClassName("item-selected");
+    for(var i = selected.length-1; i >= 0; i--) {
+      selected[i].classList.remove("item-selected");
+    }
+  }
 
   // Initialize the rooms and the object/action for the second game
   $scope.initSecondGame = function () {

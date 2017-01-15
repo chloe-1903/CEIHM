@@ -164,11 +164,11 @@
 }
 
 .forbidden-cadre {
-  border : 1px solid red;
+  border : 3px solid red;
 }
 
 .true-cadre {
-  border : 1px solid green;
+  border : 3px solid green;
 }
 
 .cadre-none {
@@ -194,4 +194,8 @@ input[disabled] {
 #jeu-1 .tile-text {
   font-size: 25px;
   margin-bottom: 10px;
+}
+
+.item-selected {
+  border: 3px solid #387ef5;
 }
