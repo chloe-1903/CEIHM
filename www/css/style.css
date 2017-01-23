@@ -5,7 +5,6 @@
     display: block;
 }
 
-
 .tile-image {
   text-shadow: 1px 1px 0 #000;
   background-size: cover;
@@ -50,8 +49,6 @@
   width: 50%;
   margin-left: 25%;
 }
-
-
 
 .failPopup .popup-body, .successPopup .popup-body, .endPopup .popup-body {
   text-align: center;
@@ -212,6 +209,7 @@ input[disabled] {
 span#questions-left {
   margin-top: 8px;
   margin-right: 85px;
+  font-size: 17px;
 }
 
 .question-image {
@@ -225,4 +223,16 @@ span#questions-left {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+span#aide-head {
+  position: relative;
+  top: -20px;
+  padding-bottom: 6px;
+}
+
+span#aide-head img {
+  height: 40px;
+  top: 15px;
+  position: relative;
 }
