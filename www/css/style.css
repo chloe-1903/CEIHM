@@ -51,17 +51,17 @@
   margin-left: 25%;
 }
 
-.popup .popup-body {
-  text-align: justify;
-}
+
 
 .failPopup .popup-body, .successPopup .popup-body, .endPopup .popup-body {
   text-align: center;
-  font-size: 18px;
+  font-size: 25px;
+  line-height: normal;
+  height: 100%;
 }
 
 .popup .popup-head h3 {
-  font-size: 22px;
+  font-size: 30px;
 }
 
 .successPopup .popup-body {
@@ -99,7 +99,7 @@
 }
 
 .gameHelp .popup-body {
-  font-size: 17px;
+  font-size: 18px;
 }
 
 .gameHelp .popup-head h3 {
@@ -150,6 +150,15 @@
   width: 100%;
   height: 100%;
   background-size: 150px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.other-room {
+  background: url(../img/cross.png);
+  width: 100%;
+  height: 100%;
+  background-size: 400px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
