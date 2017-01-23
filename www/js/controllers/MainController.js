@@ -13,8 +13,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     ionic.Platform.exitApp();
   };
 
-  // TODO : Prendre en compte les actions !
-
   // Initialize the rooms and the object/action for the first game
   $scope.initFirstGame = function () {
     $http.get(dataV1JsonPath).success(function(data) {
@@ -183,13 +181,18 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   $scope.initSecondGame = function () {
     $http.get('json/datav1.json').success(function(data) {
       $scope.questionList = [];
-      var objectsArray = data.objects.slice();
+      var questionsArray = [];
+      if($scope.paramsSecondGame.play_type === "action"){
+        questionsArray = data.actions.slice();
+      } else {
+        questionsArray = data.objects.slice();
+      }
       while($scope.questionList.length < $scope.paramsSecondGame.nb_questions){
-        var nb = Math.floor(Math.random()*objectsArray.length);
-        $scope.questionList.push(objectsArray[nb]);
-        objectsArray.splice(nb,1);
-        if(objectsArray.length === 0){
-          objectsArray = data.objects.slice();
+        var nb = Math.floor(Math.random()*questionsArray.length);
+        $scope.questionList.push(questionsArray[nb]);
+        questionsArray.splice(nb,1);
+        if(questionsArray.length === 0){
+          questionsArray = data.objects.slice();
         }
       }
 

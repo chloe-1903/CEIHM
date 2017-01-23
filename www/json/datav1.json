@@ -156,7 +156,45 @@
       ]
     }
   ],
-  "actions":[],
+  "actions":[
+    {
+      "name":"Dormir",
+      "image":"dormir.jpg",
+      "ref_rooms":[
+        "bedroom.jpg"
+      ]
+    },
+    {
+      "name":"Se brosser les cheveux",
+      "image":"brosserchecveux.jpg",
+      "ref_rooms":[
+        "bathroom.jpg",
+        "bedroom.jpg"
+      ]
+    },
+    {
+      "name":"Se brosser les dents",
+      "image":"brosserdents.jpg",
+      "ref_rooms":[
+        "bathroom.jpg"
+      ]
+    },
+    {
+      "name":"Lire",
+      "image":"lire.jpg",
+      "ref_rooms":[
+        "bedroom.jpg",
+        "livingroom.jpg"
+      ]
+    },
+    {
+      "name":"Manger",
+      "image":"mangersoupe.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    }
+  ],
   "rooms":[
     {
       "name": "Salle de bain",
@@ -170,7 +208,10 @@
         "savon.jpg",
         "serviettes-de-bain.jpg"
       ],
-      "ref_actions": []
+      "ref_actions": [
+        "brosserchecveux.jpg",
+        "brosserdents.jpg"
+      ]
     },
     {
       "name": "Cuisine",
@@ -187,7 +228,9 @@
         "Eponges.jpg",
         "plat-four.jpg"
       ],
-      "ref_actions": []
+      "ref_actions": [
+        "mangersoupe.jpg"
+      ]
     },
     {
       "name": "Salon",
@@ -196,7 +239,9 @@
         "dvd.jpg",
         "telecommande.jpg"
       ],
-      "ref_actions": []
+      "ref_actions": [
+        "lire.jpg"
+      ]
     },
     {
       "name": "Chambre",
@@ -206,7 +251,11 @@
         "vetements.jpg",
         "chaussettes.jpg"
       ],
-      "ref_actions": []
+      "ref_actions": [
+        "brossercheveux.jpg",
+        "dormir.jpg",
+        "lire.jpg"
+      ]
     },
     {
       "name":"Toilettes",
