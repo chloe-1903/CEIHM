@@ -4,44 +4,54 @@
     <ion-nav-buttons side="secondary">
       <span id="questions-left">Questions : {{current_question}}/{{paramsFirstGame.nb_questions}}</span>
       <a class="button button-large button-clear" ng-click="showGameHelp('helpRulesFirstGame', 'Sound_1')">
-        <i class="icon ion-ios-help-outline"></i>
+        <span id="aide-head">Aide : <img src="../img/aide-head.png"></span>
       </a>
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content>
 
     <!-- TODO : Là aussi codé en dur ! Devra etre généré par un ng-repeat -->
+
     <div class="row">
+      <!--
       <div class="col col-20">
         <div class="button button-block tile-question tile-tall" ng-click="checkOtherRoomAnswerFirstGame(null, null, null)">
           <span>?</span>
         </div>
-      </div>
+      </div> -->
 
-      <div class="col col-60">
+      <div class="col col-50">
         <div class="button button-block tile-image tile-tall"
             ng-style="{'background-image':'url(img/'+questionRoom.image+')'}"
             ng-click="checkMainRoomAnswerFirstGame(null, null, null)">
         </div>
       </div>
 
+      <div class="col col-50">
+        <div class="button button-block tile-image tile-tall"
+             ng-style="{'background-image':'url(img/'+questionRoom.image+')'}"
+             ng-click="checkOtherRoomAnswerFirstGame(null, null, null)">
+          <div class="other-room"></div>
+        </div>
+      </div>
+<!--
       <div class="col col-20">
         <div class="button button-block tile-question tile-tall" ng-click="checkOtherRoomAnswerFirstGame(null, null, null)">
           <span>?</span>
         </div>
-      </div>
+      </div> -->
     </div>
-
+    <!--
     <div class="row">
       <div class="col col-20 tile-text">
         Autre pièce
-      </div>
-
-      <div class="col col-60 tile-text">
+      </div> -->
+    <div class="row">
+      <div class="col col-50 tile-text">
         {{questionRoom.name}}
       </div>
 
-      <div class="col col-20 tile-text">
+      <div class="col col-50 tile-text">
         Autre pièce
       </div>
     </div>
