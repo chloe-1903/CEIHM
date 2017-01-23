@@ -20,6 +20,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       var roomsArray = data.rooms.slice();
       while($scope.questionRoomList.length < $scope.paramsFirstGame.nb_questions){
         var nb = Math.floor(Math.random()*roomsArray.length);
+        var currentRoom = roomsArray[nb];
+
         $scope.questionRoomList.push(roomsArray[nb]);
         roomsArray.splice(nb,1);
         if(roomsArray.length === 0){
