@@ -2,8 +2,8 @@ var app = angular.module('application');
 
 app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
-  $scope.paramsFirstGame = {"objects_active": true, "actions_active": false, "nb_objects":3, "nb_actions":1, "text_descr": true, "voc_descr": false, "nb_questions":3, "nb_try":2};
-  $scope.paramsSecondGame = { "play_type" : "action", "nb_rooms":4, "text_descr": true, "voc_descr": false, "nb_questions":3, "nb_try":2};
+  $scope.paramsFirstGame = {"objects_active": true, "actions_active": false, "nb_objects":2, "nb_actions":2, "text_descr": false, "voc_descr": false, "nb_questions":4, "nb_try":2};
+  $scope.paramsSecondGame = { "play_type" : "action", "nb_rooms":3, "text_descr": true, "voc_descr": false, "nb_questions":4, "nb_try":2};
 
   var dataV1JsonPath = 'json/datav1.json';
   var helpsJsonPath = 'json/helps.json';
