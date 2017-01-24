@@ -20,6 +20,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       var roomsArray = data.rooms.slice();
       while($scope.questionRoomList.length < $scope.paramsFirstGame.nb_questions){
         var nb = Math.floor(Math.random()*roomsArray.length);
+        var currentRoom = roomsArray[nb];
+
         $scope.questionRoomList.push(roomsArray[nb]);
         roomsArray.splice(nb,1);
         if(roomsArray.length === 0){
@@ -50,62 +52,109 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   function nextStepFirstGame(){
     $scope.fgSelected = undefined;
     $scope.alreadyAnswered = [];
+    $scope.fgGoodAnswers = [];
+    $scope.fgBadAnswers = [];
 
     $http.get('json/datav1.json').success(function(data) {
       // Retrieves the question room in the question list
       $scope.questionRoom = $scope.questionRoomList[$scope.remaining_questions - 1];
 
-      // Defining the number of good and bad answers randomly (according to the number of objects defined and the actual referenced objects)
-      var randMax = $scope.questionRoom.ref_objects.length < $scope.paramsFirstGame.nb_objects ?
-        $scope.questionRoom.ref_objects.length : $scope.paramsFirstGame.nb_objects;
-      var nbGoodAnswers = Math.floor(Math.random() * randMax) + 1;
-      var nbBadAnswers = $scope.paramsFirstGame.nb_objects - nbGoodAnswers;
-      console.log("Good answer: " + nbGoodAnswers);
-      console.log("Bad answer: " + nbBadAnswers);
+      /************************ Handling objects **************************/
 
-      // Building the good answers array
-      var refObjectsArray = $scope.questionRoom.ref_objects.slice();
-      $scope.fgGoodAnswers = [];
-      for(var i = 0 ; i < nbGoodAnswers ; i++){
-        var nb = Math.floor(Math.random()*refObjectsArray.length);
-        console.log(JSON.stringify(refObjectsArray));
-        var objToAdd = data.objects.filter(function (elmt) {
-          if(elmt.image != undefined && elmt.image == refObjectsArray[nb])
-            return elmt;
+      if($scope.paramsFirstGame.objects_active) {
+        // Defining the number of good and bad answers randomly (according to the number of objects defined
+        // and the actual referenced objects)
+        var randMaxObjects = $scope.questionRoom.ref_objects.length < $scope.paramsFirstGame.nb_objects ?
+          $scope.questionRoom.ref_objects.length : $scope.paramsFirstGame.nb_objects;
+        var nbGoodAnswersObjects = Math.floor(Math.random() * randMaxObjects) + 1;
+        var nbBadAnswersObjects = $scope.paramsFirstGame.nb_objects - nbGoodAnswersObjects;
+
+        // Building the good answers array
+        var refObjectsArray = $scope.questionRoom.ref_objects.slice();
+        for (var i = 0; i < nbGoodAnswersObjects; i++) {
+          var nb = Math.floor(Math.random() * refObjectsArray.length);
+          var objToAdd = data.objects.filter(function (elmt) {
+            if (elmt.image != undefined && elmt.image == refObjectsArray[nb])
+              return elmt;
+          });
+
+          // objToAdd returns an array, so assign it immediately to a var
+          $scope.fgGoodAnswers.push(objToAdd[0]);
+          refObjectsArray.splice(nb, 1);
+        }
+
+        // Retrieving all the objects not referenced in the question room
+        var objectsArray = data.objects.slice();
+        var allBadObjectsArray = objectsArray.filter(function (elmt) {
+          return $scope.questionRoom.ref_objects.indexOf(elmt.image) === -1;
         });
-        console.log(objToAdd);
-        // objToAdd returns an array, so assign it immediately to a var
-        $scope.fgGoodAnswers.push(objToAdd[0]);
-        refObjectsArray.splice(nb,1);
-      }
-      console.log($scope.fgGoodAnswers);
 
-      // Retrieving all the objects not referenced in the question room
-      var objectsArray = data.objects.slice();
-      var allBadObjectsArray = objectsArray.filter(function (elmt) {
-        return $scope.questionRoom.ref_objects.indexOf(elmt.image) === -1;
-      });
-
-      // Building the bad answers array
-      $scope.fgBadAnswers = [];
-      while($scope.fgBadAnswers.length < nbBadAnswers){
-        nb = Math.floor(Math.random()*allBadObjectsArray.length);
-        $scope.fgBadAnswers.push(allBadObjectsArray[nb]);
-        allBadObjectsArray.splice(nb,1);
+        // Building the bad answers array
+        while ($scope.fgBadAnswers.length < nbBadAnswersObjects) {
+          nb = Math.floor(Math.random() * allBadObjectsArray.length);
+          $scope.fgBadAnswers.push(allBadObjectsArray[nb]);
+          allBadObjectsArray.splice(nb, 1);
+        }
+      } else {
+        $scope.paramsFirstGame.nb_objects = 0;
       }
-      console.log($scope.fgBadAnswers);
+
+      /************************ Handling actions **************************/
+
+      if($scope.paramsFirstGame.actions_active) {
+        // Defining the number of good and bad answers randomly (according to the number of actions defined
+        // and the actual referenced objects)
+        var randMax = $scope.questionRoom.ref_actions.length < $scope.paramsFirstGame.nb_actions ?
+          $scope.questionRoom.ref_actions.length : $scope.paramsFirstGame.nb_actions;
+        var nbGoodAnswersActions = Math.floor(Math.random() * randMax) + 1;
+        var nbBadAnswersActions = $scope.paramsFirstGame.nb_actions - nbGoodAnswersActions;
+
+        // Building the good answers array
+        var refActionsArray = $scope.questionRoom.ref_actions.slice();
+        for (var i = 0; i < nbGoodAnswersActions; i++) {
+          var nb = Math.floor(Math.random() * refActionsArray.length);
+          var actToAdd = data.actions.filter(function (elmt) {
+            if (elmt.image != undefined && elmt.image == refActionsArray[nb])
+              return elmt;
+          });
+          // actToAdd returns an array, so assign it immediately to a var
+          $scope.fgGoodAnswers.push(actToAdd[0]);
+          refActionsArray.splice(nb, 1);
+        }
+
+        // Retrieving all the actions not referenced in the question room
+        var actionsArray = data.actions.slice();
+        var allBadActionsArray = actionsArray.filter(function (elmt) {
+          return $scope.questionRoom.ref_actions.indexOf(elmt.image) === -1;
+        });
+
+        // Building the bad answers array
+        while ($scope.fgBadAnswers.length < nbBadAnswersActions) {
+          nb = Math.floor(Math.random() * allBadActionsArray.length);
+          $scope.fgBadAnswers.push(allBadActionsArray[nb]);
+          allBadActionsArray.splice(nb, 1);
+        }
+      } else {
+        $scope.paramsFirstGame.nb_actions = 0;
+      }
+
+      /******************************************************************/
 
       // Mixing randomly the good and bad answers
       var answersToMix = $scope.fgBadAnswers.concat($scope.fgGoodAnswers);
 
       $scope.fgAnswers = [];
-      while($scope.fgAnswers.length < $scope.paramsFirstGame.nb_objects){
+      var nbItems = $scope.paramsFirstGame.nb_objects + $scope.paramsFirstGame.nb_actions;
+      while($scope.fgAnswers.length < nbItems){
         var nb = Math.floor(Math.random() * answersToMix.length);
         $scope.fgAnswers.push(answersToMix[nb]);
         answersToMix.splice(nb,1);
       }
-      console.log($scope.fgAnswers);
-      console.log(JSON.stringify($scope.fgAnswers));
+
+      console.log("Good : "+JSON.stringify($scope.fgGoodAnswers));
+      console.log("Bad : "+JSON.stringify($scope.fgBadAnswers));
+      console.log("Answers : "+JSON.stringify($scope.fgAnswers));
+
     });
   }
 
@@ -377,7 +426,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     });
     alertSuccessPopup.then(function (res) {
       $scope.alreadyAnswered.push($scope.fgSelected);
-      if($scope.alreadyAnswered.length === parseInt($scope.paramsFirstGame.nb_objects)) {
+      var nbItems = parseInt($scope.paramsFirstGame.nb_objects) + parseInt($scope.paramsFirstGame.nb_actions);
+      if($scope.alreadyAnswered.length === nbItems) {
         // fin du jeu !
         endGamePopupGame1();
       }

@@ -166,7 +166,7 @@
     },
     {
       "name":"Se brosser les cheveux",
-      "image":"brosserchecveux.jpg",
+      "image":"brossercheveux.jpg",
       "ref_rooms":[
         "bathroom.jpg",
         "bedroom.jpg"
@@ -184,7 +184,8 @@
       "image":"lire.jpg",
       "ref_rooms":[
         "bedroom.jpg",
-        "livingroom.jpg"
+        "livingroom.jpg",
+        "toilets.jpg"
       ]
     },
     {
@@ -209,7 +210,7 @@
         "serviettes-de-bain.jpg"
       ],
       "ref_actions": [
-        "brosserchecveux.jpg",
+        "brossercheveux.jpg",
         "brosserdents.jpg"
       ]
     },
@@ -263,7 +264,9 @@
       "ref_objects": [
         "pq.jpg"
       ],
-      "ref_actions": []
+      "ref_actions": [
+        "lire.jpg"
+      ]
     }
   ]
 }
