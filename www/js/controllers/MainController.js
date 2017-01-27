@@ -61,12 +61,14 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
       /************************ Handling objects **************************/
 
+      var nbBadAnswersObjects = 0;
       if($scope.paramsFirstGame.objects_active) {
         // Defining the number of good and bad answers randomly (according to the number of objects defined
         // and the actual referenced objects)
         var randMaxObjects = $scope.questionRoom.ref_objects.length < $scope.paramsFirstGame.nb_objects ?
           $scope.questionRoom.ref_objects.length : $scope.paramsFirstGame.nb_objects;
-        var nbGoodAnswersObjects = Math.floor(Math.random() * randMaxObjects) + 1;
+        var nbGoodAnswersObjects = 0;
+        if(randMaxObjects != 0) nbGoodAnswersObjects = Math.floor(Math.random() * randMaxObjects) + 1;
         var nbBadAnswersObjects = $scope.paramsFirstGame.nb_objects - nbGoodAnswersObjects;
 
         // Building the good answers array
@@ -104,10 +106,12 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       if($scope.paramsFirstGame.actions_active) {
         // Defining the number of good and bad answers randomly (according to the number of actions defined
         // and the actual referenced objects)
-        var randMax = $scope.questionRoom.ref_actions.length < $scope.paramsFirstGame.nb_actions ?
+        var randMaxActions = $scope.questionRoom.ref_actions.length < $scope.paramsFirstGame.nb_actions ?
           $scope.questionRoom.ref_actions.length : $scope.paramsFirstGame.nb_actions;
-        var nbGoodAnswersActions = Math.floor(Math.random() * randMax) + 1;
+        var nbGoodAnswersActions = 0;
+        if(randMaxActions != 0) nbGoodAnswersActions = Math.floor(Math.random() * randMaxActions) + 1;
         var nbBadAnswersActions = $scope.paramsFirstGame.nb_actions - nbGoodAnswersActions;
+        console.log(nbBadAnswersActions+ " Type : "+typeof nbBadAnswersActions);
 
         // Building the good answers array
         var refActionsArray = $scope.questionRoom.ref_actions.slice();
@@ -129,7 +133,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         });
 
         // Building the bad answers array
-        while ($scope.fgBadAnswers.length < nbBadAnswersActions) {
+        while ($scope.fgBadAnswers.length < nbBadAnswersActions + nbBadAnswersObjects) {
           nb = Math.floor(Math.random() * allBadActionsArray.length);
           $scope.fgBadAnswers.push(allBadActionsArray[nb]);
           allBadActionsArray.splice(nb, 1);

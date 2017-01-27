@@ -194,6 +194,34 @@
       "ref_rooms":[
         "kitchen.jpg"
       ]
+    },
+    {
+      "name":"Cuisiner",
+      "image":"cooking.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Boire",
+      "image":"boire.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Se laver",
+      "image":"selaver.jpg",
+      "ref_rooms":[
+        "bathroom.jpg"
+      ]
+    },
+    {
+      "name":"Aller aux toilettes",
+      "image":"allerauxtoilettes.jpg",
+      "ref_rooms":[
+        "toilets.jpg"
+      ]
     }
   ],
   "rooms":[
@@ -211,7 +239,8 @@
       ],
       "ref_actions": [
         "brossercheveux.jpg",
-        "brosserdents.jpg"
+        "brosserdents.jpg",
+        "selaver.jpg"
       ]
     },
     {
@@ -230,7 +259,9 @@
         "plat-four.jpg"
       ],
       "ref_actions": [
-        "mangersoupe.jpg"
+        "mangersoupe.jpg",
+        "cooking.jpg",
+        "boire.jpg"
       ]
     },
     {
@@ -265,7 +296,8 @@
         "pq.jpg"
       ],
       "ref_actions": [
-        "lire.jpg"
+        "lire.jpg",
+        "allerauxtoilettes.jpg"
       ]
     }
   ]
