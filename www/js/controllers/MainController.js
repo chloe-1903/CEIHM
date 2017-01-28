@@ -123,6 +123,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       } else if($scope.fgBadAnswers.indexOf($scope.fgSelected) > -1) {
         // fail
         removeSelected();
+        console.log($scope.fgSelected.ref_rooms);
         failGamePopup();
       }
     }
@@ -265,6 +266,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     var alertFailPopup = $ionicPopup.alert({
       title: 'Raté !',
       template: 'Ça irait sûrement mieux dans un autre pièce, non ?',
+      //templateUrl: 'templates/answerHint.html',
       okText: 'Continuer',
       cssClass: 'failPopup'
     });

@@ -5,7 +5,6 @@
     display: block;
 }
 
-
 .tile-image {
   text-shadow: 1px 1px 0 #000;
   background-size: cover;
@@ -39,8 +38,8 @@
 }
 
 .popup {
-  width: 450px !important;
-  height: 325px;
+  width: 700px !important;
+  height: 500px;
   padding-bottom: 64px;
 }
 
@@ -234,9 +233,9 @@ span#questions-left {
   -ms-transform: rotate(-50deg); /* IE 9 */
     -webkit-transform: rotate(-50deg); /* Chrome, Safari, Opera */
     transform: rotate(-50deg);
-    height: 9em;
-    left: 10em;
-    bottom: 15em;
+  height: 9em;
+  left: 10em;
+  bottom: 15em;
   opacity: 0;
 }
 
@@ -246,9 +245,9 @@ span#questions-left {
   -ms-transform: rotate(-110deg); /* IE 9 */
     -webkit-transform: rotate(-110deg); /* Chrome, Safari, Opera */
     transform: rotate(-110deg);
-    height: 9em;
-    left: 20em;
-    bottom: 15em;
+  height: 9em;
+  left: 20em;
+  bottom: 15em;
   opacity: 0;
 }
 
@@ -257,10 +256,11 @@ span#questions-left {
   bottom: 0;
   -ms-transform: rotate(-150deg); /* IE 9 */
     -webkit-transform: rotate(-150deg); /* Chrome, Safari, Opera */
-    height: 9em;
-    width: 25em;
-    left: 30em;
-    bottom: 15em;
+    transform: rotate(-150deg); /* Chrome, Safari, Opera */
+  height: 9em;
+  width: 25em;
+  left: 30em;
+  bottom: 15em;
   opacity: 0;
 }
 
@@ -270,11 +270,11 @@ span#questions-left {
   -ms-transform: rotate(-160deg); /* IE 9 */
     -webkit-transform: rotate(-160deg); /* Chrome, Safari, Opera */
     transform: rotate(-160deg);
-    height: 9em;
-    width: 40em;
-    left: 30em;
-    bottom: 15em;
-  opacity: 1;
+  height: 9em;
+  width: 40em;
+  left: 35em;
+  bottom: 15em;
+  opacity: 0;
 }
 
 
@@ -284,10 +284,10 @@ span#questions-left {
   -ms-transform: rotate(-20deg); /* IE 9 */
     -webkit-transform: rotate(-20deg); /* Chrome, Safari, Opera */
     transform: rotate(-20deg);
-    height: 9em;
-    width: 40em;
-    left: 15em;
-    bottom: 15em;
+  height: 9em;
+  width: 40em;
+  left: 15em;
+  bottom: 15em;
   opacity: 0;
 }
 
@@ -297,10 +297,10 @@ span#questions-left {
   -ms-transform: rotate(-30deg); /* IE 9 */
     -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */
     transform: rotate(-30deg);
-    height: 9em;
-    left: 35em;
-    width: 20em;
-    bottom: 15em;
+  height: 9em;
+  left: 35em;
+  width: 20em;
+  bottom: 15em;
   opacity: 0;
 }
 
@@ -309,9 +309,11 @@ span#questions-left {
   bottom: 0;
   -ms-transform: rotate(-90deg); /* IE 9 */
     -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
-    height: 9em;
-    left: 50em;
-    bottom: 15em;
+    transform: rotate(-90deg);
+    
+  height: 9em;
+  left: 50em;
+  bottom: 15em;
   opacity: 0;
 }
 
@@ -324,7 +326,7 @@ span#questions-left {
     height: 9em;
     left: 70em;
     bottom: 15em;
-  opacity: 1;
+  opacity: 0;
 }
 
 
