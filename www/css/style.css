@@ -38,8 +38,8 @@
 }
 
 .popup {
-  width: 700px !important;
-  height: 500px;
+  width: 450px !important;
+  height: 325px;
   padding-bottom: 64px;
 }
 
@@ -49,8 +49,6 @@
   width: 50%;
   margin-left: 25%;
 }
-
-
 
 .failPopup .popup-body, .successPopup .popup-body, .endPopup .popup-body {
   text-align: center;
@@ -211,6 +209,7 @@ input[disabled] {
 span#questions-left {
   margin-top: 8px;
   margin-right: 85px;
+  font-size: 17px;
 }
 
 .question-image {
@@ -228,6 +227,8 @@ span#questions-left {
 
 /* Answer arrow -- Dirty solution */
 .answer-arrow-1-left {
+    display: none;
+
   position: fixed;
   bottom: 0;
   -ms-transform: rotate(-50deg); /* IE 9 */
@@ -240,6 +241,8 @@ span#questions-left {
 }
 
 .answer-arrow-2-left {
+    display: none;
+
   position: fixed;
   bottom: 0;
   -ms-transform: rotate(-110deg); /* IE 9 */
@@ -252,6 +255,8 @@ span#questions-left {
 }
 
 .answer-arrow-3-left {
+    display: none;
+
   position: fixed;
   bottom: 0;
   -ms-transform: rotate(-150deg); /* IE 9 */
@@ -265,6 +270,8 @@ span#questions-left {
 }
 
 .answer-arrow-4-left {
+    display: none;
+
   position: fixed;
   bottom: 0;
   -ms-transform: rotate(-160deg); /* IE 9 */
@@ -279,6 +286,8 @@ span#questions-left {
 
 
 .answer-arrow-1-right {
+    display: none;
+
   position: fixed;
   bottom: 0;
   -ms-transform: rotate(-20deg); /* IE 9 */
@@ -292,6 +301,8 @@ span#questions-left {
 }
 
 .answer-arrow-2-right {
+    display: none;
+
   position: fixed;
   bottom: 0;
   -ms-transform: rotate(-30deg); /* IE 9 */
@@ -305,6 +316,7 @@ span#questions-left {
 }
 
 .answer-arrow-3-right {
+    display: none;
   position: fixed;
   bottom: 0;
   -ms-transform: rotate(-90deg); /* IE 9 */
@@ -318,6 +330,7 @@ span#questions-left {
 }
 
 .answer-arrow-4-right {
+  display: none;
   position: fixed;
   bottom: 0;
   -ms-transform: rotate(-90deg); /* IE 9 */
@@ -328,8 +341,6 @@ span#questions-left {
     bottom: 15em;
   opacity: 0;
 }
-
-
 
 /* The animation code */
 @keyframes example {
@@ -342,4 +353,16 @@ span#questions-left {
     animation-name: example;
     animation-duration: 2s;
     animation-delay: 1s;
+}
+
+span#aide-head {
+  position: relative;
+  top: -20px;
+  padding-bottom: 6px;
+}
+
+span#aide-head img {
+  height: 40px;
+  top: 15px;
+  position: relative;
 }

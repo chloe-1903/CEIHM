@@ -166,7 +166,7 @@
     },
     {
       "name":"Se brosser les cheveux",
-      "image":"brosserchecveux.jpg",
+      "image":"brossercheveux.jpg",
       "ref_rooms":[
         "bathroom.jpg",
         "bedroom.jpg"
@@ -184,7 +184,8 @@
       "image":"lire.jpg",
       "ref_rooms":[
         "bedroom.jpg",
-        "livingroom.jpg"
+        "livingroom.jpg",
+        "toilets.jpg"
       ]
     },
     {
@@ -192,6 +193,34 @@
       "image":"mangersoupe.jpg",
       "ref_rooms":[
         "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Cuisiner",
+      "image":"cooking.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Boire",
+      "image":"boire.jpg",
+      "ref_rooms":[
+        "kitchen.jpg"
+      ]
+    },
+    {
+      "name":"Se laver",
+      "image":"selaver.jpg",
+      "ref_rooms":[
+        "bathroom.jpg"
+      ]
+    },
+    {
+      "name":"Aller aux toilettes",
+      "image":"allerauxtoilettes.jpg",
+      "ref_rooms":[
+        "toilets.jpg"
       ]
     }
   ],
@@ -209,8 +238,9 @@
         "serviettes-de-bain.jpg"
       ],
       "ref_actions": [
-        "brosserchecveux.jpg",
-        "brosserdents.jpg"
+        "brossercheveux.jpg",
+        "brosserdents.jpg",
+        "selaver.jpg"
       ]
     },
     {
@@ -229,7 +259,9 @@
         "plat-four.jpg"
       ],
       "ref_actions": [
-        "mangersoupe.jpg"
+        "mangersoupe.jpg",
+        "cooking.jpg",
+        "boire.jpg"
       ]
     },
     {
@@ -263,7 +295,10 @@
       "ref_objects": [
         "pq.jpg"
       ],
-      "ref_actions": []
+      "ref_actions": [
+        "lire.jpg",
+        "allerauxtoilettes.jpg"
+      ]
     }
   ]
 }
