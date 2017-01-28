@@ -17,6 +17,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   $scope.initFirstGame = function () {
     $http.get(dataV1JsonPath).success(function(data) {
       $scope.questionRoomList = [];
+      $scope.nbCurrentTry = 0;
       var roomsArray = data.rooms.slice();
       while($scope.questionRoomList.length < $scope.paramsFirstGame.nb_questions){
         var nb = Math.floor(Math.random()*roomsArray.length);
@@ -50,6 +51,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   // Resets the data for a new game and generates a new set of objects/actions
   function nextStepFirstGame(){
+    $scope.nbCurrentTry = 0;
     $scope.fgSelected = undefined;
     $scope.alreadyAnswered = [];
     $scope.fgGoodAnswers = [];
@@ -177,11 +179,20 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         // fail
         removeSelected();
         console.log($scope.fgSelected);
-        //failGamePopup();
-        hintPopupFirstGame();
+        firstGameShowFailPopup();
+        
       }
     }
   };
+
+  function firstGameShowFailPopup() {
+    if($scope.nbCurrentTry < $scope.paramsFirstGame.nb_try) {
+          failGamePopup();
+          $scope.nbCurrentTry += 1;
+        } else {
+          hintPopupFirstGame();
+        }
+  }
 
   // Checking answer when selecting the "other room" button
   $scope.checkOtherRoomAnswerFirstGame = function (elem, cadre, text) {
@@ -203,7 +214,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       } else {
         // fail
         removeSelected();
-        failGamePopup();
+        firstGameShowFailPopup();
       }
     }
   };
