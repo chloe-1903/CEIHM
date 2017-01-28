@@ -38,9 +38,13 @@
 }
 
 .popup {
-  width: 450px !important;
-  height: 325px;
+  width: 700px !important;
+  height: 500px;
   padding-bottom: 64px;
+}
+
+.popup-with-hint {
+
 }
 
 .popup-buttons {

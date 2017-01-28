@@ -176,8 +176,9 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       } else if($scope.fgBadAnswers.indexOf($scope.fgSelected) > -1) {
         // fail
         removeSelected();
-        //console.log($scope.fgSelected.ref_rooms);
-        failGamePopup();
+        console.log($scope.fgSelected);
+        //failGamePopup();
+        hintPopupFirstGame();
       }
     }
   };
@@ -314,6 +315,22 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   };
 
   /* ========= Global popups ========= */
+
+  function hintPopupFirstGame() {
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+      templateUrl: 'templates/answerHint.html',
+      cssClass: 'popup-with-hint',
+      title: 'Raté !',
+      scope: $scope,
+      buttons: [
+        { 
+          text: 'Continuer', 
+          type: 'button-positive',
+        }
+      ]
+    });
+  }
 
   function failGamePopup(){
     var alertFailPopup = $ionicPopup.alert({

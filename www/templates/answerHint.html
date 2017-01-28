@@ -1,2 +1,14 @@
-<h3>The answer here</h3>
-<img ng-src="img/vetements.jpg"/>
+<h3>Cet objet va plutôt là</h3>
+<div class='objet-chambre'>
+    <div class="row">
+        <div class = "col">
+            <img ng-src="img/{{fgSelected.image}}" style="width: 100%;"/>
+        </div>
+        <div class = "col">
+            <img ng-src="img/arrow.png" style="width: 100%;"/>    
+        </div>
+        <div class = "col-50">
+            <img ng-src="img/{{fgSelected.ref_rooms[0]}}" style="width: 100%;"/>
+        </div>
+    </div>
+</div>
