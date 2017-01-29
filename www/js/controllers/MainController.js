@@ -17,7 +17,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   $scope.initFirstGame = function () {
     $http.get(dataV1JsonPath).success(function(data) {
       $scope.questionRoomList = [];
-      $scope.nbCurrentTry = 0;
+      $scope.nbCurrentTryFirstGame = 0;
       var roomsArray = data.rooms.slice();
       while($scope.questionRoomList.length < $scope.paramsFirstGame.nb_questions){
         var nb = Math.floor(Math.random()*roomsArray.length);
@@ -51,7 +51,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   // Resets the data for a new game and generates a new set of objects/actions
   function nextStepFirstGame(){
-    $scope.nbCurrentTry = 0;
+    $scope.nbCurrentTryFirstGame = 0;
     $scope.fgSelected = undefined;
     $scope.alreadyAnswered = [];
     $scope.fgGoodAnswers = [];
@@ -185,10 +185,11 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     }
   };
 
+  // Refactoring - function to call when showing a fail popup for first game
   function firstGameShowFailPopup() {
-    if($scope.nbCurrentTry < $scope.paramsFirstGame.nb_try) {
+    if($scope.nbCurrentTryFirstGame < $scope.paramsFirstGame.nb_try) {
           failGamePopup();
-          $scope.nbCurrentTry += 1;
+          $scope.nbCurrentTryFirstGame += 1;
         } else {
           hintPopupFirstGame();
         }
@@ -246,6 +247,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   // Initialize the rooms and the object/action for the second game
   $scope.initSecondGame = function () {
     $http.get('json/datav1.json').success(function(data) {
+      $scope.nbCurrentTrySecondGame = 0;
       $scope.questionList = [];
       var questionsArray = [];
       if($scope.paramsSecondGame.play_type === "action"){
@@ -274,6 +276,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   function nextStepSecondGame(){
     $http.get('json/datav1.json').success(function(data) {
 
+      $scope.nbCurrentTrySecondGame = 0;
       // Retrieves the question room in the question list
       $scope.question = $scope.questionList[$scope.remaining_questions - 1];
 
@@ -312,6 +315,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       $scope.remaining_questions--;
     }
     else {
+      //console.log("Putting forbidden sign...")
       //Put a forbidden circle on the image
       document.getElementById(elem).className += " forbidden";
       document.getElementById(cadre).className += " forbidden-cadre";
@@ -321,16 +325,43 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
         document.getElementById(cadre).classList.add("cadre-none");
         document.getElementById(text).style.opacity = "0";
       }
-      failGamePopup();
+      secondGameShowFailPopup();
+      //failGamePopup();
     }
   };
+
+  // Refactoring - function to call when showing a fail popup for second game
+  function secondGameShowFailPopup() {
+    if($scope.nbCurrentTrySecondGame < $scope.paramsSecondGame.nb_try) {
+          failGamePopup();
+          $scope.nbCurrentTrySecondGame += 1;
+        } else {
+          hintPopupSecondGame();
+        }
+  }
 
   /* ========= Global popups ========= */
 
   function hintPopupFirstGame() {
     // An elaborate, custom popup
     var myPopup = $ionicPopup.show({
-      templateUrl: 'templates/answerHint.html',
+      templateUrl: 'templates/answerHintFirstGame.html',
+      cssClass: 'popup-with-hint',
+      title: 'Raté !',
+      scope: $scope,
+      buttons: [
+        { 
+          text: 'Continuer', 
+          type: 'button-positive',
+        }
+      ]
+    });
+  }
+
+  function hintPopupSecondGame() {
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+      templateUrl: 'templates/answerHintSecondGame.html',
       cssClass: 'popup-with-hint',
       title: 'Raté !',
       scope: $scope,
