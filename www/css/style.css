@@ -38,13 +38,21 @@
 }
 
 .popup {
-  width: 800px !important;
-  height: 450px;
+  width: 450px !important; /* 800 */
+  height: 325px; /* 450 */
   padding-bottom: 64px;
 }
 
-.popup-with-hint {
+.popup-with-hint .popup {
+  width: 800px !important;
+  height: initial;
+}
 
+.popup-with-hint img#hint-forbid {
+  width: 50px;
+  position: absolute;
+  top: 10px;
+  left: 460px;
 }
 
 .popup-buttons {
@@ -326,7 +334,7 @@ span#questions-left {
   -ms-transform: rotate(-90deg); /* IE 9 */
     -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
     transform: rotate(-90deg);
-    
+
   height: 9em;
   left: 50em;
   bottom: 15em;
