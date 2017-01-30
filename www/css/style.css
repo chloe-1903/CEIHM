@@ -38,9 +38,21 @@
 }
 
 .popup {
-  width: 450px !important;
-  height: 325px;
+  width: 450px !important; /* 800 */
+  height: 325px; /* 450 */
   padding-bottom: 64px;
+}
+
+.popup-with-hint .popup {
+  width: 800px !important;
+  height: initial;
+}
+
+.popup-with-hint img#hint-forbid {
+  width: 50px;
+  position: absolute;
+  top: 10px;
+  left: 460px;
 }
 
 .popup-buttons {
@@ -223,6 +235,136 @@ span#questions-left {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+/* Answer arrow -- Dirty solution */
+.answer-arrow-1-left {
+    display: none;
+
+  position: fixed;
+  bottom: 0;
+  -ms-transform: rotate(-50deg); /* IE 9 */
+    -webkit-transform: rotate(-50deg); /* Chrome, Safari, Opera */
+    transform: rotate(-50deg);
+  height: 9em;
+  left: 10em;
+  bottom: 15em;
+  opacity: 0;
+}
+
+.answer-arrow-2-left {
+    display: none;
+
+  position: fixed;
+  bottom: 0;
+  -ms-transform: rotate(-110deg); /* IE 9 */
+    -webkit-transform: rotate(-110deg); /* Chrome, Safari, Opera */
+    transform: rotate(-110deg);
+  height: 9em;
+  left: 20em;
+  bottom: 15em;
+  opacity: 0;
+}
+
+.answer-arrow-3-left {
+    display: none;
+
+  position: fixed;
+  bottom: 0;
+  -ms-transform: rotate(-150deg); /* IE 9 */
+    -webkit-transform: rotate(-150deg); /* Chrome, Safari, Opera */
+    transform: rotate(-150deg); /* Chrome, Safari, Opera */
+  height: 9em;
+  width: 25em;
+  left: 30em;
+  bottom: 15em;
+  opacity: 0;
+}
+
+.answer-arrow-4-left {
+    display: none;
+
+  position: fixed;
+  bottom: 0;
+  -ms-transform: rotate(-160deg); /* IE 9 */
+    -webkit-transform: rotate(-160deg); /* Chrome, Safari, Opera */
+    transform: rotate(-160deg);
+  height: 9em;
+  width: 40em;
+  left: 35em;
+  bottom: 15em;
+  opacity: 0;
+}
+
+
+.answer-arrow-1-right {
+    display: none;
+
+  position: fixed;
+  bottom: 0;
+  -ms-transform: rotate(-20deg); /* IE 9 */
+    -webkit-transform: rotate(-20deg); /* Chrome, Safari, Opera */
+    transform: rotate(-20deg);
+  height: 9em;
+  width: 40em;
+  left: 15em;
+  bottom: 15em;
+  opacity: 0;
+}
+
+.answer-arrow-2-right {
+    display: none;
+
+  position: fixed;
+  bottom: 0;
+  -ms-transform: rotate(-30deg); /* IE 9 */
+    -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */
+    transform: rotate(-30deg);
+  height: 9em;
+  left: 35em;
+  width: 20em;
+  bottom: 15em;
+  opacity: 0;
+}
+
+.answer-arrow-3-right {
+    display: none;
+  position: fixed;
+  bottom: 0;
+  -ms-transform: rotate(-90deg); /* IE 9 */
+    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+    transform: rotate(-90deg);
+
+  height: 9em;
+  left: 50em;
+  bottom: 15em;
+  opacity: 0;
+}
+
+.answer-arrow-4-right {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  -ms-transform: rotate(-90deg); /* IE 9 */
+    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+    transform: rotate(-90deg);
+    height: 9em;
+    left: 70em;
+    bottom: 15em;
+  opacity: 0;
+}
+
+/* The animation code */
+@keyframes example {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* The element to apply the animation to */
+.answer-arrow-1 {
+    animation-name: example;
+    animation-duration: 2s;
+    animation-delay: 1s;
 }
 
 span#aide-head {

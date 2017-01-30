@@ -4,7 +4,7 @@
     <ion-nav-buttons side="secondary">
       <span id="questions-left">Questions : {{current_question}}/{{paramsFirstGame.nb_questions}}</span>
       <a class="button button-large button-clear" ng-click="showGameHelp('helpRulesFirstGame', 'Sound_1')">
-        <span id="aide-head">Aide : <img src="../img/aide-head.png"></span>
+        <span id="aide-head">Aide : <img src="img/aide-head.png"></span>
       </a>
     </ion-nav-buttons>
   </ion-nav-bar>
@@ -107,6 +107,17 @@
         {{fgAnswers[3].name}}
       </div>
     </div>
+
+    <!-- Arrow for the answers ... -->
+    <img src="img/arrow.png" class="answer-arrow-1-left">
+    <img src="img/arrow.png" class="answer-arrow-2-left">
+    <img src="img/arrow.png" class="answer-arrow-3-left">
+    <img src="img/arrow.png" class="answer-arrow-4-left">
+
+    <img src="img/arrow.png" class="answer-arrow-1-right">
+    <img src="img/arrow.png" class="answer-arrow-2-right">
+    <img src="img/arrow.png" class="answer-arrow-3-right">
+    <img src="img/arrow.png" class="answer-arrow-4-right">
 
   </ion-content>
 </ion-view>
