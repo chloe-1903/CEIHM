@@ -89,7 +89,9 @@
       "name":"Savon",
       "image":"savon.jpg",
       "ref_rooms":[
-        "bathroom.jpg"
+        "bathroom.jpg",
+        "kitchen.jpg",
+        "toilets.jpg"
       ]
     },
     {
@@ -138,7 +140,9 @@
       "name":"Éponge",
       "image":"Eponges.jpg",
       "ref_rooms":[
-        "kitchen.jpg"
+        "kitchen.jpg",
+        "bathroom.jpg",
+        "toilets.jpg"
       ]
     },
     {
@@ -236,7 +240,8 @@
         "peigne.jpg",
         "peignoir.jpg",
         "savon.jpg",
-        "serviettes-de-bain.jpg"
+        "serviettes-de-bain.jpg",
+        "Eponges.jpg"
       ],
       "ref_actions": [
         "brossercheveux.jpg",
@@ -257,12 +262,14 @@
         "bol.jpg",
         "bouteille-eau.jpg",
         "Eponges.jpg",
-        "plat-four.jpg"
+        "plat-four.jpg",
+        "savon.jpg"
       ],
       "ref_actions": [
         "mangersoupe.jpg",
         "cooking.jpg",
-        "boire.jpg"
+        "boire.jpg",
+        "Eponges.jpg"
       ]
     },
     {
@@ -294,7 +301,9 @@
       "name":"Toilettes",
       "image":"toilets.jpg",
       "ref_objects": [
-        "pq.jpg"
+        "pq.jpg",
+        "Eponges.jpg",
+        "savon.jpg"
       ],
       "ref_actions": [
         "lire.jpg",
