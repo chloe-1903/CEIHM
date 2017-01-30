@@ -206,7 +206,8 @@
       "name":"Boire",
       "image":"boire.jpg",
       "ref_rooms":[
-        "kitchen.jpg"
+        "kitchen.jpg",
+        "bathroom.jpg"
       ]
     },
     {
