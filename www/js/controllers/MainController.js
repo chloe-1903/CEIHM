@@ -235,24 +235,28 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
     $http.get('json/datav1.json').success(function(data) {
       $scope.questionList = [];
       var questionsArray = [];
+      var staticQuestionArray = [];
       if($scope.paramsSecondGame.play_type === "action"){
         questionsArray = data.actions.slice();
-      } else {
+        staticQuestionArray = data.actions.slice();
+      } else if($scope.paramsSecondGame.play_type === "object") {
         questionsArray = data.objects.slice();
+        staticQuestionArray = data.objects.slice();
       }
       while($scope.questionList.length < $scope.paramsSecondGame.nb_questions){
         var nb = Math.floor(Math.random()*questionsArray.length);
         $scope.questionList.push(questionsArray[nb]);
         questionsArray.splice(nb,1);
         if(questionsArray.length === 0){
-          questionsArray = data.objects.slice();
+          questionsArray = staticQuestionArray.slice();
         }
       }
 
       $scope.remaining_questions = $scope.paramsSecondGame.nb_questions;
-      $scope.current_question = $scope.paramsFirstGame.nb_questions - $scope.remaining_questions + 1;
+      $scope.current_question = $scope.paramsSecondGame.nb_questions - $scope.remaining_questions + 1;
 
       nextStepSecondGame();
+      console.log(JSON.stringify($scope.questionList));
     });
 
   };
