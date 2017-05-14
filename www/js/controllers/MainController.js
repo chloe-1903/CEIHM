@@ -312,6 +312,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
     });
   }
 
+  $scope.IsClickEnable = true;
   // Check if the answer is valid (for the second game)
   $scope.checkAnswerSecondGame = function (answer, elem, cadre, text) {
     if(answer == $scope.solution[0].image){
@@ -327,7 +328,11 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
       if(document.getElementById(elem).classList.length == 3) {
         //document.getElementById(elem).style.display = "none";
         document.getElementById(cadre).classList.add("cadre-none");
+
+        if(document.getElementById(text).style.opacity != "0")
+          secondGameShowFailPopup();
         document.getElementById(text).style.opacity = "0";
+
       }
 
       if(document.getElementById(text).style.opacity != "0")
