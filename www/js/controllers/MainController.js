@@ -524,31 +524,15 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
   }
 
   function endGamePopupGame1() {
-
-    $scope.remaining_questions--;
-    if($scope.remaining_questions === 0){
-      endGamePopup();
-    } else {
-      //Supprime les trucs vert
-      var trueElem = document.getElementsByClassName("true");
-      var trueCadre = document.getElementsByClassName("true-cadre");
-      var length = trueElem.length;
-      console.log(trueElem.length);
-      for (var y = length - 1; y >= 0; y--) {
-        console.log(trueElem[y]);
-        trueElem[y].classList.remove("true");
-        trueCadre[y].classList.remove("true-cadre");
-      }
-      $scope.current_question++;
-      nextStepFirstGame();
-    }
-
-    /*var alertSuccessPopup = $ionicPopup.alert({
+    var alertSuccessPopup = $ionicPopup.alert({
       title: 'Bien joué !',
       template: 'Vous avez placé tous les objets !',
       okText: 'Continuer',
       cssClass: 'successPopup'
     });
+    $timeout(function() {
+      alertSuccessPopup.close();
+    }, 2000);
     alertSuccessPopup.then(function (res) {
       $scope.remaining_questions--;
       if($scope.remaining_questions === 0){
@@ -566,8 +550,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
         }
         $scope.current_question++;
         nextStepFirstGame();
-      }
-    });*/
+      }    });
   }
 
   /*

@@ -301,8 +301,7 @@
       "image":"toilets.jpg",
       "ref_objects": [
         "pq.jpg",
-        "Eponges.jpg",
-        "savon.jpg"
+        "Eponges.jpg"
       ],
       "ref_actions": [
         "lire.jpg",
