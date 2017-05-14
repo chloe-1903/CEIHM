@@ -386,6 +386,9 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
       okText: 'Continuer',
       cssClass: 'failPopup'
     });
+    $timeout(function() {
+      alertFailPopup.close();
+    }, 2000);
   }
 
   function endGamePopup() {
@@ -423,7 +426,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
           { text: '',
             type: 'button-clear',
             onTap: function(e) {
-              // e.preventDefault() will stop the popup from closing when tapped.
               e.preventDefault();
               if(audio) {
                 audio.pause();
@@ -456,7 +458,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
       cssClass: 'successPopup'
     });
     $timeout(function() {
-      alertSuccessPopup.close(); //close the popup after 10 seconds for some reason
+      alertSuccessPopup.close();
     }, 2000);
     alertSuccessPopup.then(function(res) {
       if($scope.remaining_questions == 0){
