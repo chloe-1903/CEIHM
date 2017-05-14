@@ -329,7 +329,10 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
         document.getElementById(cadre).classList.add("cadre-none");
         document.getElementById(text).style.opacity = "0";
       }
-      secondGameShowFailPopup();
+
+      if(document.getElementById(text).style.opacity != "0")
+        secondGameShowFailPopup();
+      //failGamePopup();
     }
   };
 
@@ -491,7 +494,15 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
   /* ========= Game 1 popups ========= */
 
   function successGamePopupGame1() {
-    var alertSuccessPopup = $ionicPopup.alert({
+
+    $scope.alreadyAnswered.push($scope.fgSelected);
+    var nbItems = parseInt($scope.paramsFirstGame.nb_objects) + parseInt($scope.paramsFirstGame.nb_actions);
+    if($scope.alreadyAnswered.length === nbItems) {
+      // fin du jeu !
+      endGamePopupGame1();
+    }
+
+    /*var alertSuccessPopup = $ionicPopup.alert({
       title: 'Bien joué !',
       template: 'Vous avez bien placé cet objet !',
       okText: 'Continuer',
@@ -504,11 +515,30 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
         // fin du jeu !
         endGamePopupGame1();
       }
-    })
+    })*/
   }
 
   function endGamePopupGame1() {
-    var alertSuccessPopup = $ionicPopup.alert({
+
+    $scope.remaining_questions--;
+    if($scope.remaining_questions === 0){
+      endGamePopup();
+    } else {
+      //Supprime les trucs vert
+      var trueElem = document.getElementsByClassName("true");
+      var trueCadre = document.getElementsByClassName("true-cadre");
+      var length = trueElem.length;
+      console.log(trueElem.length);
+      for (var y = length - 1; y >= 0; y--) {
+        console.log(trueElem[y]);
+        trueElem[y].classList.remove("true");
+        trueCadre[y].classList.remove("true-cadre");
+      }
+      $scope.current_question++;
+      nextStepFirstGame();
+    }
+
+    /*var alertSuccessPopup = $ionicPopup.alert({
       title: 'Bien joué !',
       template: 'Vous avez placé tous les objets !',
       okText: 'Continuer',
@@ -532,7 +562,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
         $scope.current_question++;
         nextStepFirstGame();
       }
-    });
+    });*/
   }
 
   /*
