@@ -2,8 +2,8 @@ var app = angular.module('application');
 
 app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
 
-  $scope.paramsFirstGame = {"objects_active": true, "actions_active": false, "nb_objects":2, "nb_actions":2, "text_descr": false, "voc_descr": false, "nb_questions":4, "nb_try":2};
-  $scope.paramsSecondGame = { "play_type" : "action", "nb_rooms":3, "text_descr": true, "voc_descr": false, "nb_questions":4, "nb_try":2};
+  $scope.paramsFirstGame = {"objects_active": true, "actions_active": false, "nb_objects":2, "nb_actions":2, "text_descr": false, "voc_descr": false, "text_size":25, "nb_questions":4, "nb_try":2};
+  $scope.paramsSecondGame = { "play_type" : "action", "nb_rooms":3, "text_descr": true, "voc_descr": false, "text_size":2, "nb_questions":4, "nb_try":2};
 
   var dataV1JsonPath = 'json/datav1.json';
   var helpsJsonPath = 'json/helps.json';
@@ -43,7 +43,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
         trueElem[y].classList.remove("true");
         trueCadre[y].classList.remove("true-cadre");
       }
-
       nextStepFirstGame();
     });
 
@@ -246,6 +245,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
 
   // Initialize the rooms and the object/action for the second game
   $scope.initSecondGame = function () {
+
     $http.get('json/datav1.json').success(function(data) {
       $scope.nbCurrentTrySecondGame = 0;
       $scope.questionList = [];
@@ -330,7 +330,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
         document.getElementById(text).style.opacity = "0";
       }
       secondGameShowFailPopup();
-      //failGamePopup();
     }
   };
 
