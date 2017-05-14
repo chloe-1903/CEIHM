@@ -327,9 +327,11 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
       if(document.getElementById(elem).classList.length == 3) {
         //document.getElementById(elem).style.display = "none";
         document.getElementById(cadre).classList.add("cadre-none");
-        document.getElementById(text).style.display = "none";
+        document.getElementById(text).style.opacity = "0";
       }
-      secondGameShowFailPopup();
+
+      if(document.getElementById(text).style.opacity != "0")
+        secondGameShowFailPopup();
       //failGamePopup();
     }
   };
