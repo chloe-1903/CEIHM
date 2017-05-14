@@ -1,6 +1,6 @@
 var app = angular.module('application');
 
-app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
+app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
 
   $scope.paramsFirstGame = {"objects_active": true, "actions_active": false, "nb_objects":2, "nb_actions":2, "text_descr": false, "voc_descr": false, "nb_questions":4, "nb_try":2};
   $scope.paramsSecondGame = { "play_type" : "action", "nb_rooms":3, "text_descr": true, "voc_descr": false, "nb_questions":4, "nb_try":2};
@@ -315,7 +315,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
   // Check if the answer is valid (for the second game)
   $scope.checkAnswerSecondGame = function (answer, elem, cadre, text) {
     if(answer == $scope.solution[0].image){
-      successGamePopup();
+      successGame2();
       $scope.remaining_questions--;
     }
     else {
@@ -386,6 +386,9 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
       okText: 'Continuer',
       cssClass: 'failPopup'
     });
+    $timeout(function() {
+      alertFailPopup.close();
+    }, 2000);
   }
 
   function endGamePopup() {
@@ -423,7 +426,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
           { text: '',
             type: 'button-clear',
             onTap: function(e) {
-              // e.preventDefault() will stop the popup from closing when tapped.
               e.preventDefault();
               if(audio) {
                 audio.pause();
@@ -448,13 +450,16 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup) {
 
   /* ========= Game 2 popups ========= */
 
-  function successGamePopup() {
+  function successGame2() {
     var alertSuccessPopup = $ionicPopup.alert({
       title: 'Bien joué !',
       template: 'Vous avez trouvé la bonne pièce !',
       okText: 'Continuer',
       cssClass: 'successPopup'
     });
+    $timeout(function() {
+      alertSuccessPopup.close();
+    }, 2000);
     alertSuccessPopup.then(function(res) {
       if($scope.remaining_questions == 0){
         endGamePopup();
