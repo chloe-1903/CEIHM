@@ -10,15 +10,7 @@
   </ion-nav-bar>
   <ion-content>
 
-    <!-- TODO : Là aussi codé en dur ! Devra etre généré par un ng-repeat -->
-
     <div class="row">
-      <!--
-      <div class="col col-20">
-        <div class="button button-block tile-question tile-tall" ng-click="checkOtherRoomAnswerFirstGame(null, null, null)">
-          <span>?</span>
-        </div>
-      </div> -->
 
       <div class="col col-50">
         <div class="button button-block tile-image tile-tall"
@@ -34,24 +26,16 @@
           <div class="other-room"></div>
         </div>
       </div>
-<!--
-      <div class="col col-20">
-        <div class="button button-block tile-question tile-tall" ng-click="checkOtherRoomAnswerFirstGame(null, null, null)">
-          <span>?</span>
-        </div>
-      </div> -->
     </div>
-    <!--
+
     <div class="row">
-      <div class="col col-20 tile-text">
-        Autre pièce
-      </div> -->
-    <div class="row">
-      <div class="col col-50 tile-text">
+      <div class="col col-50 tile-text"
+           ng-click="checkMainRoomAnswerFirstGame(null, null, null)">
         {{questionRoom.name}}
       </div>
 
-      <div class="col col-50 tile-text">
+      <div class="col col-50 tile-text"
+           ng-click="checkOtherRoomAnswerFirstGame(null, null, null)">
         Autre pièce
       </div>
     </div>
@@ -91,19 +75,23 @@
     </div>
 
     <div class="row">
-      <div class="col col-25 tile-text">
+      <div class="col col-25 tile-text"
+           ng-click="setSelected(fgAnswers[0], 'image-1', 'cadre-1')">
         {{fgAnswers[0].name}}
       </div>
 
-      <div class="col col-25 tile-text">
+      <div class="col col-25 tile-text"
+           ng-click="setSelected(fgAnswers[1], 'image-2', 'cadre-2')">
         {{fgAnswers[1].name}}
       </div>
 
-      <div class="col col-25 tile-text">
+      <div class="col col-25 tile-text"
+           ng-click="setSelected(fgAnswers[2], 'image-3', 'cadre-3')">
         {{fgAnswers[2].name}}
       </div>
 
-      <div class="col col-25 tile-text">
+      <div class="col col-25 tile-text"
+           ng-click="setSelected(fgAnswers[3], 'image-4', 'cadre-4')">
         {{fgAnswers[3].name}}
       </div>
     </div>
