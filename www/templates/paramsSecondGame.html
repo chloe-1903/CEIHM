@@ -43,9 +43,18 @@
         <input type="checkbox" ng-model="paramsSecondGame.voc_descr"> Activer la description vocale des images</label>
 		</div>
 
-		<br/>
+    <div class="row">
+      <div class="col col-50 col-offset-25">
+        <div class="row"> Taille du texte ({{paramsSecondGame.text_size}} pixels)</div>
+        <div class="item range row">
+          Normal
+          <input step="5" min="25" max="50" type="range" ng-model="paramsSecondGame.text_size">
+          Gros
+        </div>
+      </div>
+    </div>
 
-		<div class="row">
+    <div class="row">
 			<div class="col .col-25 col-offset-25">
 				<div class="row"> Nombre de questions ({{paramsSecondGame.nb_questions}})</div>
 				<div class="item range row">
