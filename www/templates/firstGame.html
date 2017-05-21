@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-if="paramsFirstGame.text_descr">
       <div class="col col-25 tile-text"
            ng-click="setSelected(fgAnswers[0], 'image-1', 'cadre-1')">
         {{fgAnswers[0].name}}

@@ -34,16 +34,16 @@
     </div>
 
     <div class="row" style="height: 10em;">
-      <div class="col col-33 tile-text" id="text-1" ng-if="paramsSecondGame.nb_rooms > 0"
+      <div class="col col-33 tile-text" id="text-1" ng-if="paramsSecondGame.nb_rooms > 0 && paramsSecondGame.text_descr"
            ng-click="checkAnswerSecondGame(rooms[0].image, 'image-1', 'cadre-1', 'text-1')">
         {{rooms[0].name}}
       </div>
-      <div class="col col-33">
+      <div class="col col-center">
         <div class="tile-image question-image"
           ng-style="{'background-image':'url(img/'+question.image+')'}">
         </div>
       </div>
-      <div class="col col-33 tile-text" id="text-2" ng-if="paramsSecondGame.nb_rooms > 1"
+      <div class="col col-33 tile-text" id="text-2" ng-if="paramsSecondGame.nb_rooms > 1 && paramsSecondGame.text_descr"
            ng-click="checkAnswerSecondGame(rooms[1].image, 'image-2', 'cadre-2', 'text-2')">
         {{rooms[1].name}}
       </div>
@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <div class="col col-33 tile-text">
+      <div class="col col-33 tile-text" ng-if="paramsSecondGame.text_descr">
         {{question.name}}
       </div>
 
@@ -73,12 +73,12 @@
     </div>
 
     <div class="row" style="height: 10em">
-      <div class="col col-33 tile-text" id="text-3" ng-if="paramsSecondGame.nb_rooms > 2"
+      <div class="col col-33 tile-text" id="text-3" ng-if="paramsSecondGame.nb_rooms > 2 && paramsSecondGame.text_descr"
            ng-click="checkAnswerSecondGame(rooms[2].image, 'image-3', 'cadre-3', 'text-3')">
         {{rooms[2].name}}
       </div>
       <div class="col col-33"></div>
-      <div class="col col-33 tile-text" id="text-4" ng-if="paramsSecondGame.nb_rooms > 3"
+      <div class="col col-33 tile-text" id="text-4" ng-if="paramsSecondGame.nb_rooms > 3 && paramsSecondGame.text_descr"
            ng-click="checkAnswerSecondGame(rooms[3].image, 'image-4', 'cadre-4', 'text-4')">
         {{rooms[3].name}}
       </div>
