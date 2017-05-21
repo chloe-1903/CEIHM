@@ -92,11 +92,17 @@
   padding-bottom: 100px;
 }
 
+.endPopup .popup {
+  width: 75% !important; /* 800 */
+  height: 75% !important;
+
+}
+
 .endPopup .popup-body {
   background-image: url('../img/Smile.png');
   background-repeat: no-repeat;
   background-position: 50% calc(50% + 25px);
-  background-size: 80px;
+  background-size: 180px;
   padding-bottom: 100px;
 }
 
