@@ -5,7 +5,7 @@
 
 	<ion-content has-header="true" padding="true" class="center">
 
-		<div class="col .col-25 col-offset-75">
+		<div class="col col-25 col-offset-75">
 			<a class="button button-light button-large" ng-click="showHelp('helpParamsFirstGame')">
 	          <i class="icon  ion-ios-help-outline"></i>
 	          Aide
@@ -13,17 +13,15 @@
 		</div>
 
 		<div class="row">
-			<label class="checkbox-inline col .col-25 col-offset-25">
+			<label class="checkbox-inline col col-25 col-offset-25">
 				<input type="checkbox" ng-model="paramsFirstGame.objects_active"> Activer les objets</label>
-			<label class="checkbox-inline col .col-25">
+			<label class="checkbox-inline col col-25">
 				<input type="checkbox" ng-model="paramsFirstGame.actions_active"> Activer les actions</label>
-			<div class="col .col-25"> </div>
+			<div class="col col-25"> </div>
 		</div>
 
-		<br/>
-
 		<div class="row">
-			<div class="col .col-25 col-offset-25" ng-class="{'disable': !paramsFirstGame.objects_active}">
+			<div class="col col-25 col-offset-25" ng-class="{'disable': !paramsFirstGame.objects_active}">
 				<div class="row"> Nombre d'objets ({{paramsFirstGame.nb_objects}})</div>
 				<div class="item range row" ng-class="{'disable': !paramsFirstGame.objects_active}">
 				  1
@@ -31,7 +29,7 @@
 				  4
 				</div>
 			</div>
-			<div class="col .col-25" ng-class="{'disable': !paramsFirstGame.actions_active}">
+			<div class="col col-25" ng-class="{'disable': !paramsFirstGame.actions_active}">
 				<div class="row"> Nombre d'actions ({{paramsFirstGame.nb_actions}})</div>
 				<div class="item range row" ng-class="{'disable': !paramsFirstGame.actions_active}">
 				  1
@@ -39,7 +37,7 @@
 				  4
 				</div>
 			</div>
-			<div class="col .col-25"> </div>
+			<div class="col col-25"> </div>
 		</div>
 
 		<br/>
@@ -51,10 +49,21 @@
 			<label class="checkbox-inline col  col-offset-33"><input type="checkbox" ng-model="paramsFirstGame.voc_descr"> Activer la description vocale des images</label>
 		</div>
 
-		<br/>
 
-		<div class="row">
-			<div class="col .col-25 col-offset-25">
+    <div class="row">
+      <div class="col col-50 col-offset-25">
+        <div class="row"> Taille du texte ({{paramsFirstGame.text_size}} pixels)</div>
+        <div class="item range row">
+          Normal
+          <input step="5" min="25" max="50" type="range" ng-model="paramsFirstGame.text_size">
+          Gros
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+			<div class="col col-25 col-offset-25">
 				<div class="row"> Nombre de questions ({{paramsFirstGame.nb_questions}})</div>
 				<div class="item range row">
 				  2
@@ -62,7 +71,7 @@
 				  20
 				</div>
 			</div>
-			<div class="col .col-25">
+			<div class="col col-25">
 				<div class="row"> Nombre de tentatives possibles ({{paramsFirstGame.nb_try}})</div>
 				<div class="item range row">
 				  1
@@ -70,13 +79,10 @@
 				  5
 				</div>
 			</div>
-			<div class="col .col-25"> </div>
+			<div class="col col-25"> </div>
 		</div>
 
-		<br/>
-
 		<div class="col col-20 col-offset-67">  <a class="button button-block button-positive" href="#/params/menu">Valider</a> </div>
-
 
   </ion-content>
 </ion-view>

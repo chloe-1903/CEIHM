@@ -33,8 +33,9 @@
 }
 
 #jeu-2 .tile-text {
-  font-size: 25px;
-  margin-top: 80px;
+  font-size: 50px;
+  white-space: nowrap;
+  margin-top: 100px;
 }
 
 .popup {
@@ -210,7 +211,8 @@ input[disabled] {
 }
 
 #jeu-1 .tile-text {
-  font-size: 25px;
+  font-size: 50px;
+  white-space: nowrap;
   margin-bottom: 10px;
 }
 
@@ -374,4 +376,16 @@ span#aide-head {
 span#aide-head i {
   top: -2px;
   position: relative;
+}
+
+
+.button-bar > .button{
+  border: 1px solid #cfcfcf;
+}
+
+.button-bar > .button:last-child {
+  border-radius: 0px 20px 20px 0px !important;
+}
+.button-bar > .button:first-child {
+  border-radius: 20px 0px 0px 20px !important;
 }
