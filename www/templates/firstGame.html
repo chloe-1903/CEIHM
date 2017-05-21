@@ -20,10 +20,9 @@
       </div>
 
       <div class="col col-50">
-        <div class="button button-block tile-image tile-tall"
-             ng-style="{'background-image':'url(img/'+questionRoom.image+')'}"
+        <div class="button button-block tile-image tile-tall other-room"
              ng-click="checkOtherRoomAnswerFirstGame(null, null, null)">
-          <div class="other-room"></div>
+          <span class="other-room-text">Autre pièce</span>
         </div>
       </div>
     </div>
@@ -34,10 +33,7 @@
         {{questionRoom.name}}
       </div>
 
-      <div class="col col-50 tile-text"
-           ng-click="checkOtherRoomAnswerFirstGame(null, null, null)">
-        Autre pièce
-      </div>
+
     </div>
 
     <div class="row">
