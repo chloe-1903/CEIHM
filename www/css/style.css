@@ -173,6 +173,7 @@
 }
 
 .other-room {
+  overflow: hidden;
   border: solid;
   background: #e7e7e7;
   position: relative;
