@@ -28,7 +28,7 @@
     </div>
 
     <div class="row">
-      <div class="col col-50 tile-text" ng-style="{fontSize : paramsFirstGame.text_size + 'px'}"
+      <div class="col col-50 tile-text" ng-if="paramsFirstGame.text_descr" ng-style="{fontSize : paramsFirstGame.text_size + 'px'}"
            ng-click="checkMainRoomAnswerFirstGame(null, null, null)">
         {{questionRoom.name}}
       </div>

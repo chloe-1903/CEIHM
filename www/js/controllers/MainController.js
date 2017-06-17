@@ -2,8 +2,8 @@ var app = angular.module('application');
 
 app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
 
-  $scope.paramsFirstGame = {"objects_active": true, "actions_active": false, "nb_objects":2, "nb_actions":2, "text_descr": true, "voc_descr": false, "text_size":25, "nb_questions":4, "nb_try":2};
-  $scope.paramsSecondGame = { "play_type" : "action", "nb_rooms":3, "text_descr": true, "voc_descr": false, "text_size":25, "nb_questions":4, "nb_try":2};
+  $scope.paramsFirstGame = {"objects_active": true, "actions_active": false, "nb_objects":2, "nb_actions":2, "text_descr": true, "text_size":25, "nb_questions":4, "nb_try":2};
+  $scope.paramsSecondGame = { "play_type" : "action", "nb_rooms":3, "text_descr": true, "text_size":25, "nb_questions":4, "nb_try":2};
 
   var dataV1JsonPath = 'json/datav1.json';
   var helpsJsonPath = 'json/helps.json';
@@ -387,7 +387,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
   function failGamePopup(){
     var alertFailPopup = $ionicPopup.alert({
       title: 'Raté !',
-      template: 'Ça irait sûrement mieux dans un autre pièce, non ?',
+      template: 'Ça irait sûrement mieux dans une autre pièce, non ?',
       //templateUrl: 'templates/answerHint.html',
       okText: 'Continuer',
       cssClass: 'failPopup'
