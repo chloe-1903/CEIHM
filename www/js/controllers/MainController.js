@@ -37,9 +37,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
       var trueElem = document.getElementsByClassName("true");
       var trueCadre = document.getElementsByClassName("true-cadre");
       var length = trueElem.length;
-      console.log(trueElem.length);
       for(var y = length-1; y >= 0; y--) {
-        console.log(trueElem[y]);
         trueElem[y].classList.remove("true");
         trueCadre[y].classList.remove("true-cadre");
       }
@@ -112,7 +110,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
         var nbGoodAnswersActions = 0;
         if(randMaxActions != 0) nbGoodAnswersActions = Math.floor(Math.random() * randMaxActions) + 1;
         var nbBadAnswersActions = $scope.paramsFirstGame.nb_actions - nbGoodAnswersActions;
-        console.log(nbBadAnswersActions+ " Type : "+typeof nbBadAnswersActions);
 
         // Building the good answers array
         var refActionsArray = $scope.questionRoom.ref_actions.slice();
@@ -177,7 +174,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
       } else if($scope.fgBadAnswers.indexOf($scope.fgSelected) > -1) {
         // fail
         removeSelected();
-        console.log($scope.fgSelected);
         firstGameShowFailPopup();
 
       }
@@ -228,6 +224,10 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
     removeSelected();
 
     //add selected
+    if (cadre=='text-avec-cadre' && !document.getElementById($scope.cadre).classList.contains("true-cadre"))
+    {
+      document.getElementById($scope.cadre).className += "text-avec-cadre-selected";
+    }
     if(document.getElementById($scope.cadre).style.backgroundImage != 'url("img/")') {
       if (!document.getElementById($scope.cadre).classList.contains("true-cadre")) {
         document.getElementById($scope.cadre).className += " item-selected";
@@ -270,7 +270,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
       $scope.current_question = $scope.paramsSecondGame.nb_questions - $scope.remaining_questions + 1;
 
       nextStepSecondGame();
-      console.log(JSON.stringify($scope.questionList));
     });
 
   };
@@ -319,7 +318,6 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
       $scope.remaining_questions--;
     }
     else {
-      //console.log("Putting forbidden sign...")
       //Put a forbidden circle on the image
       document.getElementById(elem).className += " forbidden";
       document.getElementById(cadre).className += " forbidden-cadre";
@@ -541,9 +539,7 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
         var trueElem = document.getElementsByClassName("true");
         var trueCadre = document.getElementsByClassName("true-cadre");
         var length = trueElem.length;
-        console.log(trueElem.length);
         for (var y = length - 1; y >= 0; y--) {
-          console.log(trueElem[y]);
           trueElem[y].classList.remove("true");
           trueCadre[y].classList.remove("true-cadre");
         }
