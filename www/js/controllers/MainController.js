@@ -326,6 +326,8 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
         //document.getElementById(elem).style.display = "none";
         document.getElementById(cadre).classList.add("cadre-none");
 
+        if (!text) return;
+
         if(document.getElementById(text).style.opacity != "0")
           secondGameShowFailPopup();
         document.getElementById(text).style.opacity = "0";
