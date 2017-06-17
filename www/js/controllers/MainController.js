@@ -338,6 +338,20 @@ app.controller('MainCtrl', function($scope, $http, $ionicPopup, $timeout) {
     }
   };
 
+  $scope.activateObjects = function() {
+    if($scope.paramsFirstGame.objects_active && $scope.paramsFirstGame.nb_objects == 0) {
+      $scope.paramsFirstGame.nb_objects = 1;
+      console.log($scope.paramsFirstGame.nb_objects);
+    }
+  };
+
+  $scope.activateActions = function() {
+    if($scope.paramsFirstGame.actions_active && $scope.paramsFirstGame.nb_actions == 0) {
+      $scope.paramsFirstGame.nb_actions = 1;
+      console.log($scope.paramsFirstGame.nb_actions);
+    }
+  };
+
   // Refactoring - function to call when showing a fail popup for second game
   function secondGameShowFailPopup() {
     if($scope.nbCurrentTrySecondGame < $scope.paramsSecondGame.nb_try) {
