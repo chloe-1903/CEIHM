@@ -10,7 +10,7 @@
   </ion-nav-bar>
   <ion-content>
 
-    <div class="row" style="height: 15em;">
+    <div class="row" style="height: 17em;">
       <div class="col col-33">
         <div id="cadre-1" class="button button-block tile-image"
           ng-if="paramsSecondGame.nb_rooms > 0 && paramsSecondGame.activate_img"
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="row" style="height: 15em;">
+    <div class="row" style="height: 5em;">
       <div class="col col-33 tile-text" id="text-1" ng-if="paramsSecondGame.nb_rooms > 0 && paramsSecondGame.text_descr && paramsSecondGame.activate_img"
            ng-style="{fontSize : paramsSecondGame.text_size + 'px'}"
            ng-click="checkAnswerSecondGame(rooms[0].image, 'image-1', 'cadre-1', 'text-1')">
