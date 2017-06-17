@@ -18,8 +18,7 @@
       "name":"Papier toilettes",
       "image":"pq.jpg",
       "ref_rooms":[
-        "toilets.jpg",
-        "bathroom.jpg"
+        "toilets.jpg"
       ]
     },
     {
@@ -234,7 +233,6 @@
       "image": "bathroom.jpg",
       "ref_objects": [
         "toothbrush.jpg",
-        "pq.jpg",
         "parfum.jpg",
         "peigne.jpg",
         "peignoir.jpg",
