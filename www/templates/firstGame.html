@@ -46,7 +46,7 @@
         </div>
         <!-- If images desactivated-->
         <div id="cadre-1text" class="text-avec-cadre"
-             ng-if="!paramsFirstGame.activate_img"
+             ng-if="!paramsFirstGame.activate_img && fgAnswers[0].name"
              ng-click="setSelected(fgAnswers[0], 'cadre-1text', 'cadre-1text')">
           {{fgAnswers[0].name}}
         </div>
@@ -61,7 +61,7 @@
         </div>
         <!-- If images desactivated-->
         <div id="cadre-2text" class="text-avec-cadre"
-             ng-if="!paramsFirstGame.activate_img"
+             ng-if="!paramsFirstGame.activate_img && fgAnswers[1].name"
              ng-click="setSelected(fgAnswers[1], 'cadre-2text', 'cadre-2text')">
           {{fgAnswers[1].name}}
         </div>
@@ -76,7 +76,7 @@
         </div>
         <!-- If images desactivated-->
         <div id="cadre-3text" class="text-avec-cadre"
-             ng-if="!paramsFirstGame.activate_img"
+             ng-if="!paramsFirstGame.activate_img && fgAnswers[2].name"
              ng-click="setSelected(fgAnswers[2], 'cadre-3text', 'cadre-3text')">
           {{fgAnswers[2].name}}
         </div>
@@ -91,7 +91,7 @@
         </div>
         <!-- If images desactivated-->
         <div id="cadre-4text" class="text-avec-cadre"
-             ng-if="!paramsFirstGame.activate_img"
+             ng-if="!paramsFirstGame.activate_img && fgAnswers[3].name"
              ng-click="setSelected(fgAnswers[3], 'cadre-4text', 'cadre-4text')">
           {{fgAnswers[3].name}}
         </div>
